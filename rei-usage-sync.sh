@@ -9,6 +9,15 @@ for cmd in curl python3 git; do
   command -v "$cmd" >/dev/null || { echo "Missing command: $cmd" >&2; exit 1; }
 done
 git -C "$repo" rev-parse --is-inside-work-tree >/dev/null
+data_dir="$repo/data"
+mkdir -p "$data_dir"
+for name in usage-latest.json usage-history.jsonl; do
+  if [[ -f "$repo/$name" && ! -f "$data_dir/$name" ]]; then
+    mv "$repo/$name" "$data_dir/$name"
+  else
+    rm -f "$repo/$name"
+  fi
+done
 
 tmp=$(mktemp)
 trap 'rm -f "$tmp"' EXIT
@@ -16,21 +25,25 @@ curl --fail --silent --show-error \
   --header "authorization: Bearer $REI_API_KEY" \
   "$api_url" >"$tmp"
 
-files=(README.md usage-latest.json usage-history.jsonl)
-if [[ -f "$repo/usage-latest.json" ]] &&
-  python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1], encoding="utf-8-sig")) != json.load(open(sys.argv[2], encoding="utf-8-sig")))' "$tmp" "$repo/usage-latest.json" &&
+files=(README.md data usage-latest.json usage-history.jsonl)
+if [[ -f "$data_dir/usage-latest.json" ]] &&
+  python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1], encoding="utf-8-sig")) != json.load(open(sys.argv[2], encoding="utf-8-sig")))' "$tmp" "$data_dir/usage-latest.json" &&
   [[ -z "$(git -C "$repo" status --porcelain -- "${files[@]}")" ]]; then
   git -C "$repo" push
   exit 0
 fi
 
-python3 -m json.tool "$tmp" >"$repo/usage-latest.json.tmp"
-mv "$repo/usage-latest.json.tmp" "$repo/usage-latest.json"
+python3 -m json.tool "$tmp" >"$data_dir/usage-latest.json.tmp"
+mv "$data_dir/usage-latest.json.tmp" "$data_dir/usage-latest.json"
 python3 - "$tmp" >"$repo/README.md.tmp" <<'PY'
 import datetime, json, sys
 
 with open(sys.argv[1], encoding="utf-8-sig") as f:
     data = json.load(f)
+
+if isinstance(data.get("daily_usage"), list):
+    data["daily_usage"] = sorted(data["daily_usage"], key=lambda row: row.get("date", ""), reverse=True)
+rate_limits = data.pop("rate_limits", None)
 
 def text(value):
     if value is None:
@@ -70,18 +83,20 @@ def render(title, value, level=2):
 
 print("# REI API Usage")
 print(f"\nUpdated: `{datetime.datetime.now(datetime.timezone.utc).isoformat()}`")
-print("\n[Latest JSON](./usage-latest.json) | [Usage history](./usage-history.jsonl)")
+print("\n[Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)")
+if rate_limits is not None:
+    render("Rate Limits", rate_limits)
 render("Overview", data)
 PY
 mv "$repo/README.md.tmp" "$repo/README.md"
-python3 - "$tmp" >>"$repo/usage-history.jsonl" <<'PY'
+python3 - "$tmp" >>"$data_dir/usage-history.jsonl" <<'PY'
 import datetime, json, sys
 with open(sys.argv[1], encoding="utf-8-sig") as f:
     data = json.load(f)
 print(json.dumps({"fetched_at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "data": data}, separators=(",", ":")))
 PY
 
-git -C "$repo" add -- "${files[@]}"
+git -C "$repo" add -A -- "${files[@]}"
 if ! git -C "$repo" diff --cached --quiet -- "${files[@]}"; then
   git -C "$repo" commit -m "Update API usage $(date -u +%FT%TZ)" -- "${files[@]}"
 fi

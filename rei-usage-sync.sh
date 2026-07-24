@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export TZ=Asia/Shanghai
 
 : "${REI_API_KEY:?Set REI_API_KEY first}"
 repo=${1:?Usage: rei-usage-sync.sh /path/to/gitea-repo}
@@ -24,6 +25,7 @@ trap 'rm -f "$tmp"' EXIT
 curl --fail --silent --show-error \
   --header "authorization: Bearer $REI_API_KEY" \
   "$api_url" >"$tmp"
+fetched_at=$(date --iso-8601=seconds)
 
 files=(README.md data usage-latest.json usage-history.jsonl)
 if [[ -f "$data_dir/usage-latest.json" ]] &&
@@ -35,8 +37,8 @@ fi
 
 python3 -m json.tool "$tmp" >"$data_dir/usage-latest.json.tmp"
 mv "$data_dir/usage-latest.json.tmp" "$data_dir/usage-latest.json"
-python3 - "$tmp" >"$repo/README.md.tmp" <<'PY'
-import datetime, json, sys
+python3 - "$tmp" "$fetched_at" >"$repo/README.md.tmp" <<'PY'
+import json, sys
 
 with open(sys.argv[1], encoding="utf-8-sig") as f:
     data = json.load(f)
@@ -82,22 +84,22 @@ def render(title, value, level=2):
         print(text(value))
 
 print("# REI API Usage")
-print(f"\nUpdated: `{datetime.datetime.now(datetime.timezone.utc).isoformat()}`")
+print(f"\nUpdated: `{sys.argv[2]}`")
 print("\n[Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)")
 if rate_limits is not None:
     render("Rate Limits", rate_limits)
 render("Overview", data)
 PY
 mv "$repo/README.md.tmp" "$repo/README.md"
-python3 - "$tmp" >>"$data_dir/usage-history.jsonl" <<'PY'
-import datetime, json, sys
+python3 - "$tmp" "$fetched_at" >>"$data_dir/usage-history.jsonl" <<'PY'
+import json, sys
 with open(sys.argv[1], encoding="utf-8-sig") as f:
     data = json.load(f)
-print(json.dumps({"fetched_at": datetime.datetime.now(datetime.timezone.utc).isoformat(), "data": data}, separators=(",", ":")))
+print(json.dumps({"fetched_at": sys.argv[2], "data": data}, separators=(",", ":")))
 PY
 
 git -C "$repo" add -A -- "${files[@]}"
 if ! git -C "$repo" diff --cached --quiet -- "${files[@]}"; then
-  git -C "$repo" commit -m "Update API usage $(date -u +%FT%TZ)" -- "${files[@]}"
+  git -C "$repo" commit -m "Update API usage $fetched_at" -- "${files[@]}"
 fi
 git -C "$repo" push

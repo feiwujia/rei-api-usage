@@ -28,15 +28,16 @@ curl --fail --silent --show-error \
 fetched_at=$(date --iso-8601=seconds)
 
 files=(README.md data usage-latest.json usage-history.jsonl)
+data_changed=1
 if [[ -f "$data_dir/usage-latest.json" ]] &&
-  python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1], encoding="utf-8-sig")) != json.load(open(sys.argv[2], encoding="utf-8-sig")))' "$tmp" "$data_dir/usage-latest.json" &&
-  [[ -z "$(git -C "$repo" status --porcelain -- "${files[@]}")" ]]; then
-  git -C "$repo" push
-  exit 0
+  python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1], encoding="utf-8-sig")) != json.load(open(sys.argv[2], encoding="utf-8-sig")))' "$tmp" "$data_dir/usage-latest.json"; then
+  data_changed=0
 fi
 
-python3 -m json.tool "$tmp" >"$data_dir/usage-latest.json.tmp"
-mv "$data_dir/usage-latest.json.tmp" "$data_dir/usage-latest.json"
+if (( data_changed )); then
+  python3 -m json.tool "$tmp" >"$data_dir/usage-latest.json.tmp"
+  mv "$data_dir/usage-latest.json.tmp" "$data_dir/usage-latest.json"
+fi
 python3 - "$tmp" "$fetched_at" >"$repo/README.md.tmp" <<'PY'
 import json, sys
 
@@ -91,12 +92,14 @@ if rate_limits is not None:
 render("Overview", data)
 PY
 mv "$repo/README.md.tmp" "$repo/README.md"
-python3 - "$tmp" "$fetched_at" >>"$data_dir/usage-history.jsonl" <<'PY'
+if (( data_changed )); then
+  python3 - "$tmp" "$fetched_at" >>"$data_dir/usage-history.jsonl" <<'PY'
 import json, sys
 with open(sys.argv[1], encoding="utf-8-sig") as f:
     data = json.load(f)
 print(json.dumps({"fetched_at": sys.argv[2], "data": data}, separators=(",", ":")))
 PY
+fi
 
 git -C "$repo" add -A -- "${files[@]}"
 if ! git -C "$repo" diff --cached --quiet -- "${files[@]}"; then

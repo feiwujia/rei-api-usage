@@ -27,7 +27,6 @@ curl --fail --silent --show-error \
   "$api_url" >"$tmp"
 fetched_at=$(date --iso-8601=seconds)
 
-files=(README.md data usage-latest.json usage-history.jsonl)
 data_changed=1
 if [[ -f "$data_dir/usage-latest.json" ]] &&
   python3 -c 'import json,sys; sys.exit(json.load(open(sys.argv[1], encoding="utf-8-sig")) != json.load(open(sys.argv[2], encoding="utf-8-sig")))' "$tmp" "$data_dir/usage-latest.json"; then
@@ -101,8 +100,8 @@ print(json.dumps({"fetched_at": sys.argv[2], "data": data}, separators=(",", ":"
 PY
 fi
 
-git -C "$repo" add -A -- "${files[@]}"
-if ! git -C "$repo" diff --cached --quiet -- "${files[@]}"; then
-  git -C "$repo" commit -m "Update API usage $fetched_at" -- "${files[@]}"
+git -C "$repo" add -A
+if ! git -C "$repo" diff --cached --quiet; then
+  git -C "$repo" commit -m "Update API usage $fetched_at"
 fi
 git -C "$repo" push

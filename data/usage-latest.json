@@ -337,27 +337,27 @@
         },
         {
             "model": "codex-auto-review",
-            "requests": 6677,
-            "input_tokens": 69527313,
-            "output_tokens": 549182,
+            "requests": 6647,
+            "input_tokens": 69440700,
+            "output_tokens": 546667,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 1063533312,
-            "total_tokens": 1133609807,
-            "cost": 895.878681,
-            "actual_cost": 895.878681,
-            "account_cost": 895.878681
+            "cache_read_tokens": 1059990016,
+            "total_tokens": 1129977383,
+            "cost": 893.598518,
+            "actual_cost": 893.598518,
+            "account_cost": 893.598518
         },
         {
             "model": "gpt-5.5",
-            "requests": 4897,
-            "input_tokens": 44374221,
-            "output_tokens": 3493757,
+            "requests": 4854,
+            "input_tokens": 44310734,
+            "output_tokens": 3466812,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 525985664,
-            "total_tokens": 573853642,
-            "cost": 591.059902,
-            "actual_cost": 591.059902,
-            "account_cost": 589.676647
+            "cache_read_tokens": 519704320,
+            "total_tokens": 567481866,
+            "cost": 586.793445,
+            "actual_cost": 586.793445,
+            "account_cost": 585.41019
         },
         {
             "model": "gpt-5.6-terra",

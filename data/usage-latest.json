@@ -321,14 +321,14 @@
         },
         {
             "date": "2026-07-30",
-            "requests": 293,
-            "input_tokens": 1703926,
-            "output_tokens": 122467,
-            "cache_read_tokens": 29989760,
+            "requests": 379,
+            "input_tokens": 2185327,
+            "output_tokens": 153754,
+            "cache_read_tokens": 41121152,
             "cache_write_tokens": 0,
-            "total_tokens": 31816153,
-            "cost": 26.890587,
-            "actual_cost": 26.890587
+            "total_tokens": 43460233,
+            "cost": 35.801898,
+            "actual_cost": 35.801898
         }
     ],
     "isValid": true,
@@ -336,39 +336,39 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 34087,
-            "input_tokens": 219693397,
-            "output_tokens": 16911323,
+            "requests": 34173,
+            "input_tokens": 220174798,
+            "output_tokens": 16942610,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 4659157760,
-            "total_tokens": 4895762480,
-            "cost": 4098.770497,
-            "actual_cost": 4098.770497,
-            "account_cost": 4167.664848
+            "cache_read_tokens": 4670289152,
+            "total_tokens": 4907406560,
+            "cost": 4107.681808,
+            "actual_cost": 4107.681808,
+            "account_cost": 4176.576159
         },
         {
             "model": "codex-auto-review",
-            "requests": 6624,
-            "input_tokens": 69396485,
-            "output_tokens": 544548,
+            "requests": 6583,
+            "input_tokens": 69283142,
+            "output_tokens": 541099,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 1059382016,
-            "total_tokens": 1129323049,
-            "cost": 893.009873,
-            "actual_cost": 893.009873,
-            "account_cost": 893.009873
+            "cache_read_tokens": 1056495488,
+            "total_tokens": 1126319729,
+            "cost": 890.896424,
+            "actual_cost": 890.896424,
+            "account_cost": 890.896424
         },
         {
             "model": "gpt-5.5",
-            "requests": 4797,
-            "input_tokens": 43686360,
-            "output_tokens": 3371248,
+            "requests": 4767,
+            "input_tokens": 43447234,
+            "output_tokens": 3335746,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 514788608,
-            "total_tokens": 561846216,
-            "cost": 578.346799,
-            "actual_cost": 578.346799,
-            "account_cost": 576.963544
+            "cache_read_tokens": 511584256,
+            "total_tokens": 558367236,
+            "cost": 574.483933,
+            "actual_cost": 574.483933,
+            "account_cost": 573.100678
         },
         {
             "model": "gpt-5.6-terra",
@@ -384,15 +384,15 @@
         },
         {
             "model": "gpt-5.4",
-            "requests": 918,
-            "input_tokens": 6974603,
-            "output_tokens": 257860,
+            "requests": 897,
+            "input_tokens": 6797268,
+            "output_tokens": 250266,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 29886720,
-            "total_tokens": 37119183,
-            "cost": 28.7760875,
-            "actual_cost": 28.7760875,
-            "account_cost": 28.7760875
+            "cache_read_tokens": 29272448,
+            "total_tokens": 36319982,
+            "cost": 28.065272,
+            "actual_cost": 28.065272,
+            "account_cost": 28.065272
         },
         {
             "model": "gpt-5.6-luna",
@@ -408,51 +408,51 @@
         },
         {
             "model": "gpt-5.4-mini",
-            "requests": 132,
-            "input_tokens": 1831313,
-            "output_tokens": 14722,
+            "requests": 130,
+            "input_tokens": 1814424,
+            "output_tokens": 14585,
             "cache_creation_tokens": 0,
             "cache_read_tokens": 111104,
-            "total_tokens": 1957139,
-            "cost": 1.44806655,
-            "actual_cost": 1.44806655,
-            "account_cost": 1.44806655
+            "total_tokens": 1940113,
+            "cost": 1.4347833,
+            "actual_cost": 1.4347833,
+            "account_cost": 1.4347833
         }
     ],
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 218.33674259999998,
+            "remaining": 209.4254316,
             "reset_at": "2026-08-04T00:00:00+08:00",
-            "used": 81.6632574,
+            "used": 90.5745684,
             "window": "7d",
             "window_start": "2026-07-28T00:00:00+08:00"
         }
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13738.774119516285,
-        "rpm": 4,
+        "average_duration_ms": 13734.793579194828,
+        "rpm": 0,
         "today": {
-            "actual_cost": 26.890587,
+            "actual_cost": 35.801898,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 29989760,
-            "cost": 26.890587,
-            "input_tokens": 1703926,
-            "output_tokens": 122467,
-            "requests": 293,
-            "total_tokens": 31816153
+            "cache_read_tokens": 41121152,
+            "cost": 35.801898,
+            "input_tokens": 2185327,
+            "output_tokens": 153754,
+            "requests": 379,
+            "total_tokens": 43460233
         },
         "total": {
-            "actual_cost": 7859.43777615,
+            "actual_cost": 7868.34908715,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 8455002880,
-            "cost": 7859.43777615,
-            "input_tokens": 524259993,
-            "output_tokens": 33795711,
-            "requests": 67974,
-            "total_tokens": 9013058584
+            "cache_read_tokens": 8466134272,
+            "cost": 7868.34908715,
+            "input_tokens": 524741394,
+            "output_tokens": 33826998,
+            "requests": 68060,
+            "total_tokens": 9024702664
         },
-        "tpm": 359832
+        "tpm": 0
     }
 }

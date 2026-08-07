@@ -1,17 +1,6 @@
 {
     "daily_usage": [
         {
-            "date": "2026-07-09",
-            "requests": 376,
-            "input_tokens": 3602100,
-            "output_tokens": 295008,
-            "cache_read_tokens": 24638848,
-            "cache_write_tokens": 0,
-            "total_tokens": 28535956,
-            "cost": 36.34589035,
-            "actual_cost": 36.34589035
-        },
-        {
             "date": "2026-07-10",
             "requests": 702,
             "input_tokens": 4916678,
@@ -422,9 +411,8 @@
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 21.51054548000002,
-            "reset_at": "2026-08-08T00:00:00+08:00",
-            "used": 278.48945452,
+            "remaining": 300,
+            "used": 0,
             "window": "7d",
             "window_start": "2026-08-01T00:00:00+08:00"
         }
@@ -434,14 +422,14 @@
         "average_duration_ms": 13741.299579293436,
         "rpm": 0,
         "today": {
-            "actual_cost": 1.26497232,
+            "actual_cost": 0,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 6620416,
-            "cost": 1.26497232,
-            "input_tokens": 376754,
-            "output_tokens": 23987,
-            "requests": 46,
-            "total_tokens": 7021157
+            "cache_read_tokens": 0,
+            "cost": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "requests": 0,
+            "total_tokens": 0
         },
         "total": {
             "actual_cost": 8182.32205381,

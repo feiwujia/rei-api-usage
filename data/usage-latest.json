@@ -321,14 +321,14 @@
         },
         {
             "date": "2026-08-08",
-            "requests": 153,
-            "input_tokens": 1257312,
-            "output_tokens": 95916,
-            "cache_read_tokens": 17890048,
+            "requests": 257,
+            "input_tokens": 1662494,
+            "output_tokens": 163387,
+            "cache_read_tokens": 34507008,
             "cache_write_tokens": 0,
-            "total_tokens": 19243276,
-            "cost": 8.06155808,
-            "actual_cost": 8.06155808
+            "total_tokens": 36332889,
+            "cost": 9.19218304,
+            "actual_cost": 9.19218304
         }
     ],
     "isValid": true,
@@ -348,15 +348,15 @@
         },
         {
             "model": "codex-auto-review",
-            "requests": 5217,
-            "input_tokens": 34721845,
-            "output_tokens": 427117,
+            "requests": 5219,
+            "input_tokens": 34840107,
+            "output_tokens": 427486,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 483963648,
-            "total_tokens": 519112610,
-            "cost": 428.404559,
-            "actual_cost": 428.404559,
-            "account_cost": 428.404559
+            "cache_read_tokens": 484084480,
+            "total_tokens": 519352073,
+            "cost": 429.067355,
+            "actual_cost": 429.067355,
+            "account_cost": 429.067355
         },
         {
             "model": "gpt-5.5",
@@ -384,15 +384,15 @@
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 355,
-            "input_tokens": 3394328,
-            "output_tokens": 156300,
+            "requests": 457,
+            "input_tokens": 3681248,
+            "output_tokens": 223402,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 24184320,
-            "total_tokens": 27734948,
-            "cost": 2.24926304,
-            "actual_cost": 2.24926304,
-            "account_cost": 2.24926304
+            "cache_read_tokens": 40680448,
+            "total_tokens": 44585098,
+            "cost": 2.717092,
+            "actual_cost": 2.717092,
+            "account_cost": 2.717092
         },
         {
             "model": "gpt-5.4",
@@ -422,37 +422,37 @@
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 291.93844192,
+            "remaining": 290.80781696,
             "reset_at": "2026-08-15T00:00:00+08:00",
-            "used": 8.06155808,
+            "used": 9.19218304,
             "window": "7d",
             "window_start": "2026-08-08T00:00:00+08:00"
         }
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13742.190764140845,
-        "rpm": 3,
+        "average_duration_ms": 13742.268208381338,
+        "rpm": 2,
         "today": {
-            "actual_cost": 8.06155808,
+            "actual_cost": 9.19218304,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 17890048,
-            "cost": 8.06155808,
-            "input_tokens": 1257312,
-            "output_tokens": 95916,
-            "requests": 153,
-            "total_tokens": 19243276
+            "cache_read_tokens": 34507008,
+            "cost": 9.19218304,
+            "input_tokens": 1662494,
+            "output_tokens": 163387,
+            "requests": 257,
+            "total_tokens": 36332889
         },
         "total": {
-            "actual_cost": 8190.38361189,
+            "actual_cost": 8191.51423685,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 8822195840,
-            "cost": 8190.38361189,
-            "input_tokens": 548510655,
-            "output_tokens": 35748396,
-            "requests": 71937,
-            "total_tokens": 9406454891
+            "cache_read_tokens": 8838812800,
+            "cost": 8191.51423685,
+            "input_tokens": 548915837,
+            "output_tokens": 35815867,
+            "requests": 72041,
+            "total_tokens": 9423544504
         },
-        "tpm": 760850
+        "tpm": 463033
     }
 }

@@ -321,14 +321,14 @@
         },
         {
             "date": "2026-08-09",
-            "requests": 1448,
-            "input_tokens": 11823489,
-            "output_tokens": 820321,
-            "cache_read_tokens": 202117632,
+            "requests": 1463,
+            "input_tokens": 12089445,
+            "output_tokens": 847375,
+            "cache_read_tokens": 203987200,
             "cache_write_tokens": 0,
-            "total_tokens": 214761442,
-            "cost": 105.2527662,
-            "actual_cost": 105.2527662
+            "total_tokens": 216924020,
+            "cost": 105.99650156,
+            "actual_cost": 105.99650156
         }
     ],
     "isValid": true,
@@ -336,15 +336,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 37269,
-            "input_tokens": 240058465,
-            "output_tokens": 18740835,
+            "requests": 37273,
+            "input_tokens": 240070375,
+            "output_tokens": 18748839,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 5021505024,
-            "total_tokens": 5280304324,
-            "cost": 4436.654829,
-            "actual_cost": 4436.654829,
-            "account_cost": 4505.54918
+            "cache_read_tokens": 5022198784,
+            "total_tokens": 5281017998,
+            "cost": 4437.301379,
+            "actual_cost": 4437.301379,
+            "account_cost": 4506.19573
         },
         {
             "model": "codex-auto-review",
@@ -360,15 +360,15 @@
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 1267,
-            "input_tokens": 7518043,
-            "output_tokens": 850812,
+            "requests": 1278,
+            "input_tokens": 7772089,
+            "output_tokens": 869862,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 153701632,
-            "total_tokens": 162070487,
-            "cost": 6.49776668,
-            "actual_cost": 6.49776668,
-            "account_cost": 6.49776668
+            "cache_read_tokens": 154877440,
+            "total_tokens": 163519391,
+            "cost": 6.59495204,
+            "actual_cost": 6.59495204,
+            "account_cost": 6.59495204
         },
         {
             "model": "gpt-5.5",
@@ -422,37 +422,37 @@
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 162.76404448,
+            "remaining": 162.02030912,
             "reset_at": "2026-08-15T00:00:00+08:00",
-            "used": 137.23595552,
+            "used": 137.97969088,
             "window": "7d",
             "window_start": "2026-08-08T00:00:00+08:00"
         }
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13728.0444082519,
-        "rpm": 5,
+        "average_duration_ms": 13732.726982834656,
+        "rpm": 0,
         "today": {
-            "actual_cost": 105.2527662,
+            "actual_cost": 105.99650156,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 202117632,
-            "cost": 105.2527662,
-            "input_tokens": 11823489,
-            "output_tokens": 820321,
-            "requests": 1448,
-            "total_tokens": 214761442
+            "cache_read_tokens": 203987200,
+            "cost": 105.99650156,
+            "input_tokens": 12089445,
+            "output_tokens": 847375,
+            "requests": 1463,
+            "total_tokens": 216924020
         },
         "total": {
-            "actual_cost": 8319.55800933,
+            "actual_cost": 8320.30174469,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 9061312384,
-            "cost": 8319.55800933,
-            "input_tokens": 564803209,
-            "output_tokens": 36755351,
-            "requests": 73680,
-            "total_tokens": 9662870944
+            "cache_read_tokens": 9063181952,
+            "cost": 8320.30174469,
+            "input_tokens": 565069165,
+            "output_tokens": 36782405,
+            "requests": 73695,
+            "total_tokens": 9665033522
         },
-        "tpm": 616009
+        "tpm": 0
     }
 }

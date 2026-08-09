@@ -321,14 +321,14 @@
         },
         {
             "date": "2026-08-09",
-            "requests": 1736,
-            "input_tokens": 15002166,
-            "output_tokens": 1036670,
-            "cache_read_tokens": 244681472,
+            "requests": 1797,
+            "input_tokens": 15866331,
+            "output_tokens": 1079115,
+            "cache_read_tokens": 254793728,
             "cache_write_tokens": 0,
-            "total_tokens": 260720308,
-            "cost": 116.08445272,
-            "actual_cost": 116.08445272
+            "total_tokens": 271739174,
+            "cost": 126.73475572,
+            "actual_cost": 126.73475572
         }
     ],
     "isValid": true,
@@ -336,15 +336,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 37259,
-            "input_tokens": 240095433,
-            "output_tokens": 18731574,
+            "requests": 37315,
+            "input_tokens": 240942600,
+            "output_tokens": 18766747,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 5022088960,
-            "total_tokens": 5280915967,
-            "cost": 4436.853807,
-            "actual_cost": 4436.853807,
-            "account_cost": 4505.748158
+            "cache_read_tokens": 5031733760,
+            "total_tokens": 5291443107,
+            "cost": 4446.967232,
+            "actual_cost": 4446.967232,
+            "account_cost": 4515.861583
         },
         {
             "model": "codex-auto-review",
@@ -372,15 +372,15 @@
         },
         {
             "model": "gpt-5.5",
-            "requests": 1318,
-            "input_tokens": 8259519,
-            "output_tokens": 707663,
+            "requests": 1306,
+            "input_tokens": 7813199,
+            "output_tokens": 701342,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 93849728,
-            "total_tokens": 102816910,
-            "cost": 109.452349,
-            "actual_cost": 109.452349,
-            "account_cost": 109.452349
+            "cache_read_tokens": 93240064,
+            "total_tokens": 101754605,
+            "cost": 106.726287,
+            "actual_cost": 106.726287,
+            "account_cost": 106.726287
         },
         {
             "model": "gpt-5.6-terra",
@@ -422,37 +422,37 @@
     "rate_limits": [
         {
             "limit": 150,
-            "remaining": 143.36327136,
+            "remaining": 132.71296836,
             "reset_at": "2026-08-16T00:00:00+08:00",
-            "used": 6.63672864,
+            "used": 17.28703164,
             "window": "7d",
             "window_start": "2026-08-09T00:00:00+08:00"
         }
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13737.431078304133,
-        "rpm": 0,
+        "average_duration_ms": 13742.17408042794,
+        "rpm": 2,
         "today": {
-            "actual_cost": 116.08445272,
+            "actual_cost": 126.73475572,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 244681472,
-            "cost": 116.08445272,
-            "input_tokens": 15002166,
-            "output_tokens": 1036670,
-            "requests": 1736,
-            "total_tokens": 260720308
+            "cache_read_tokens": 254793728,
+            "cost": 126.73475572,
+            "input_tokens": 15866331,
+            "output_tokens": 1079115,
+            "requests": 1797,
+            "total_tokens": 271739174
         },
         "total": {
-            "actual_cost": 8330.38969585,
+            "actual_cost": 8341.03999885,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 9103876224,
-            "cost": 8330.38969585,
-            "input_tokens": 567981886,
-            "output_tokens": 36971700,
-            "requests": 73968,
-            "total_tokens": 9708829810
+            "cache_read_tokens": 9113988480,
+            "cost": 8341.03999885,
+            "input_tokens": 568846051,
+            "output_tokens": 37014145,
+            "requests": 74029,
+            "total_tokens": 9719848676
         },
-        "tpm": 0
+        "tpm": 315610
     }
 }

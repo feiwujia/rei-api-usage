@@ -336,15 +336,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 36380,
-            "input_tokens": 234440913,
-            "output_tokens": 18267029,
+            "requests": 36310,
+            "input_tokens": 234259219,
+            "output_tokens": 18253001,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 4879113728,
-            "total_tokens": 5131821670,
-            "cost": 4285.308556,
-            "actual_cost": 4285.308556,
-            "account_cost": 4392.051592
+            "cache_read_tokens": 4859514368,
+            "total_tokens": 5112026588,
+            "cost": 4266.528892,
+            "actual_cost": 4266.528892,
+            "account_cost": 4380.922602
         },
         {
             "model": "codex-auto-review",

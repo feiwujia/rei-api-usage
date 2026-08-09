@@ -396,15 +396,15 @@
         },
         {
             "model": "gpt-5.4",
-            "requests": 364,
-            "input_tokens": 3008618,
-            "output_tokens": 94423,
+            "requests": 355,
+            "input_tokens": 2948950,
+            "output_tokens": 92867,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 11960320,
-            "total_tokens": 15063361,
-            "cost": 11.92797,
-            "actual_cost": 11.92797,
-            "account_cost": 11.92797
+            "cache_read_tokens": 11616896,
+            "total_tokens": 14658713,
+            "cost": 11.669604,
+            "actual_cost": 11.669604,
+            "account_cost": 11.669604
         },
         {
             "model": "gpt-5.4-mini",

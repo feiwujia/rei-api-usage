@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>REI API Usage</title>
+
+  <link rel="stylesheet" href="./dashboard.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+  <main class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div>
+        <div class="eyebrow">REI API</div>
+        <h1>Usage Dashboard</h1>
+        <p id="updated" class="muted">Loading usage data…</p>
+      </div>
+
+      <div id="status" class="status">Loading</div>
+    </header>
+
+
+    <!-- KPI -->
+    <section class="kpi-grid">
+
+      <div class="card">
+        <div class="label">Requests Today</div>
+        <div id="requests" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Tokens Today</div>
+        <div id="tokens" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Cost Today</div>
+        <div id="cost" class="value">—</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Avg Latency</div>
+        <div id="latency" class="value">—</div>
+      </div>
+
+    </section>
+
+
+    <!-- Daily cost -->
+    <section class="panel chart-wide">
+
+      <div class="panel-header">
+        <div>
+          <h2>Cost over time</h2>
+          <p class="muted">Daily API cost</p>
+        </div>
+      </div>
+
+      <div class="chart-container">
+        <canvas id="costChart"></canvas>
+      </div>
+
+    </section>
+
+
+    <!-- Quota + model -->
+    <section class="two-column">
+
+      <article class="panel">
+
+        <div class="panel-header">
+          <div>
+            <h2>Weekly quota</h2>
+            <p id="quotaWindow" class="muted">—</p>
+          </div>
+        </div>
+
+        <div class="quota-value">
+          <span id="quotaUsed">—</span>
+          <span class="muted"> / </span>
+          <span id="quotaLimit">—</span>
+        </div>
+
+        <div class="progress">
+          <div id="quotaProgress" class="progress-value"></div>
+        </div>
+
+        <div class="quota-footer">
+          <span id="quotaPercent">—</span>
+          <span id="quotaReset" class="muted">—</span>
+        </div>
+
+      </article>
+
+
+      <article class="panel">
+
+        <div class="panel-header">
+          <div>
+            <h2>Cost by model</h2>
+            <p class="muted">Share of reported model cost</p>
+          </div>
+        </div>
+
+        <div class="chart-container model-chart">
+          <canvas id="modelChart"></canvas>
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- Model table -->
+    <section class="panel">
+
+      <div class="panel-header">
+        <div>
+          <h2>Models</h2>
+          <p class="muted">Usage and efficiency</p>
+        </div>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+
+          <thead>
+            <tr>
+              <th>Model</th>
+              <th>Requests</th>
+              <th>Tokens</th>
+              <th>Cost</th>
+              <th>Cost share</th>
+              <th>Avg / request</th>
+            </tr>
+          </thead>
+
+          <tbody id="modelTable"></tbody>
+
+        </table>
+      </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+      <a href="./data/usage-latest.json">Raw JSON</a>
+      <span>·</span>
+      <a href="./data/usage-history.jsonl">History</a>
+    </footer>
+
+  </main>
+
+  <script src="./dashboard.js"></script>
+</body>
+</html>

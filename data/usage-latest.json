@@ -325,27 +325,27 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 34569,
-            "input_tokens": 223947151,
-            "output_tokens": 17246476,
+            "requests": 33952,
+            "input_tokens": 220147731,
+            "output_tokens": 16936139,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 4586849024,
-            "total_tokens": 4828042651,
-            "cost": 4003.319659,
-            "actual_cost": 4003.319659,
-            "account_cost": 4162.83384
+            "cache_read_tokens": 4512845568,
+            "total_tokens": 4749929438,
+            "cost": 3922.916689,
+            "actual_cost": 3922.916689,
+            "account_cost": 4097.524902
         },
         {
             "model": "codex-auto-review",
-            "requests": 5479,
-            "input_tokens": 52818318,
-            "output_tokens": 463498,
+            "requests": 5319,
+            "input_tokens": 52439510,
+            "output_tokens": 450616,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 543853056,
-            "total_tokens": 597134872,
-            "cost": 549.923058,
-            "actual_cost": 549.923058,
-            "account_cost": 549.923058
+            "cache_read_tokens": 537443328,
+            "total_tokens": 590333454,
+            "cost": 544.437694,
+            "actual_cost": 544.437694,
+            "account_cost": 544.437694
         },
         {
             "model": "gpt-5.6-luna",

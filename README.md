@@ -1,14 +1,14 @@
 # REI API Usage
 
-Updated: `2026-08-11T11:39:28+08:00`
+Updated: `2026-08-11T12:53:19+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
 ## Rate Limits
 
-| limit | remaining | reset_at | used | window | window_start |
-|---|---|---|---|---|---|
-| 150 | 0 | 2026-08-16T00:00:00+08:00 | 150.00102344 | 7d | 2026-08-09T00:00:00+08:00 |
+| limit | remaining | used | window | window_start |
+|---|---|---|---|---|
+| 150 | 150 | 0 | 7d | - |
 
 ## Overview
 

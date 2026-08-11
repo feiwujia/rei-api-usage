@@ -411,11 +411,10 @@
     "rate_limits": [
         {
             "limit": 150,
-            "remaining": 0,
-            "reset_at": "2026-08-16T00:00:00+08:00",
-            "used": 150.00102344,
+            "remaining": 150,
+            "used": 0,
             "window": "7d",
-            "window_start": "2026-08-09T00:00:00+08:00"
+            "window_start": null
         }
     ],
     "status": "active",

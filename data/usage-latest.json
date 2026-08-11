@@ -1,17 +1,6 @@
 {
     "daily_usage": [
         {
-            "date": "2026-07-13",
-            "requests": 73,
-            "input_tokens": 850031,
-            "output_tokens": 31690,
-            "cache_read_tokens": 3914112,
-            "cache_write_tokens": 0,
-            "total_tokens": 4795833,
-            "cost": 5.56095475,
-            "actual_cost": 5.56095475
-        },
-        {
             "date": "2026-07-14",
             "requests": 1322,
             "input_tokens": 5648622,

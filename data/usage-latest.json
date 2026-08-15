@@ -350,15 +350,15 @@
         },
         {
             "model": "gpt-5.5",
-            "requests": 1118,
-            "input_tokens": 6017321,
-            "output_tokens": 573973,
+            "requests": 1115,
+            "input_tokens": 5688462,
+            "output_tokens": 572562,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 74836992,
-            "total_tokens": 81428286,
-            "cost": 84.724291,
-            "actual_cost": 84.724291,
-            "account_cost": 84.724291
+            "cache_read_tokens": 74615680,
+            "total_tokens": 80876704,
+            "cost": 82.92701,
+            "actual_cost": 82.92701,
+            "account_cost": 82.92701
         },
         {
             "model": "gpt-5.6-terra",
@@ -374,27 +374,27 @@
         },
         {
             "model": "gpt-5.4",
-            "requests": 67,
-            "input_tokens": 557105,
-            "output_tokens": 16164,
+            "requests": 60,
+            "input_tokens": 534368,
+            "output_tokens": 15189,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 1699456,
-            "total_tokens": 2272725,
-            "cost": 2.0600865,
-            "actual_cost": 2.0600865,
-            "account_cost": 2.0600865
+            "cache_read_tokens": 1576448,
+            "total_tokens": 2126005,
+            "cost": 1.957867,
+            "actual_cost": 1.957867,
+            "account_cost": 1.957867
         },
         {
             "model": "gpt-5.4-mini",
-            "requests": 14,
-            "input_tokens": 256351,
-            "output_tokens": 2227,
+            "requests": 13,
+            "input_tokens": 132110,
+            "output_tokens": 1851,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 38400,
-            "total_tokens": 296978,
-            "cost": 0.20516475,
-            "actual_cost": 0.20516475,
-            "account_cost": 0.20516475
+            "cache_read_tokens": 36864,
+            "total_tokens": 170825,
+            "cost": 0.1101768,
+            "actual_cost": 0.1101768,
+            "account_cost": 0.1101768
         }
     ],
     "rate_limits": [

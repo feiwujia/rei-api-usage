@@ -382,30 +382,6 @@
             "cost": 27.6808929,
             "actual_cost": 27.6808929,
             "account_cost": 27.6808929
-        },
-        {
-            "model": "gpt-5.4",
-            "requests": 10,
-            "input_tokens": 134746,
-            "output_tokens": 3883,
-            "cache_creation_tokens": 0,
-            "cache_read_tokens": 209664,
-            "total_tokens": 348293,
-            "cost": 0.447526,
-            "actual_cost": 0.447526,
-            "account_cost": 0.447526
-        },
-        {
-            "model": "gpt-5.4-mini",
-            "requests": 1,
-            "input_tokens": 7893,
-            "output_tokens": 65,
-            "cache_creation_tokens": 0,
-            "cache_read_tokens": 0,
-            "total_tokens": 7958,
-            "cost": 0.00621225,
-            "actual_cost": 0.00621225,
-            "account_cost": 0.00621225
         }
     ],
     "rate_limits": [

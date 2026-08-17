@@ -350,15 +350,15 @@
         },
         {
             "model": "gpt-5.5",
-            "requests": 1047,
-            "input_tokens": 5424900,
-            "output_tokens": 541359,
+            "requests": 1017,
+            "input_tokens": 5332820,
+            "output_tokens": 528368,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 71040896,
-            "total_tokens": 77007155,
-            "cost": 78.885718,
-            "actual_cost": 78.885718,
-            "account_cost": 78.885718
+            "cache_read_tokens": 70155904,
+            "total_tokens": 76017092,
+            "cost": 77.593092,
+            "actual_cost": 77.593092,
+            "account_cost": 77.593092
         },
         {
             "model": "gpt-5.6-terra",

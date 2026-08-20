@@ -303,15 +303,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 23691,
-            "input_tokens": 144716818,
-            "output_tokens": 11929738,
+            "requests": 23655,
+            "input_tokens": 144627610,
+            "output_tokens": 11893763,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 3037068672,
-            "total_tokens": 3193715228,
-            "cost": 2623.785098,
-            "actual_cost": 2623.785098,
-            "account_cost": 2669.887079
+            "cache_read_tokens": 3031607680,
+            "total_tokens": 3188129053,
+            "cost": 2619.529312,
+            "actual_cost": 2619.529312,
+            "account_cost": 2665.631293
         },
         {
             "model": "gpt-5.6-luna",
@@ -327,15 +327,15 @@
         },
         {
             "model": "codex-auto-review",
-            "requests": 3654,
-            "input_tokens": 43086144,
-            "output_tokens": 324590,
+            "requests": 3651,
+            "input_tokens": 43076398,
+            "output_tokens": 324373,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 433167104,
-            "total_tokens": 476577838,
-            "cost": 438.918292,
-            "actual_cost": 438.918292,
-            "account_cost": 438.918292
+            "cache_read_tokens": 432978688,
+            "total_tokens": 476379459,
+            "cost": 438.768844,
+            "actual_cost": 438.768844,
+            "account_cost": 438.768844
         },
         {
             "model": "gpt-5.5",

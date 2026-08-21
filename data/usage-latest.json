@@ -303,39 +303,39 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 21130,
-            "input_tokens": 115788789,
-            "output_tokens": 10865788,
+            "requests": 20995,
+            "input_tokens": 114599511,
+            "output_tokens": 10826271,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 2680505984,
-            "total_tokens": 2807160561,
-            "cost": 2268.945109,
-            "actual_cost": 2268.945109,
-            "account_cost": 2287.321673
+            "cache_read_tokens": 2658216320,
+            "total_tokens": 2783642102,
+            "cost": 2250.668377,
+            "actual_cost": 2250.668377,
+            "account_cost": 2269.044941
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 4536,
-            "input_tokens": 32150127,
-            "output_tokens": 2189189,
+            "requests": 4535,
+            "input_tokens": 32143049,
+            "output_tokens": 2189146,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 612865152,
-            "total_tokens": 647204468,
-            "cost": 25.90589904,
-            "actual_cost": 25.90589904,
-            "account_cost": 25.90589904
+            "cache_read_tokens": 612854144,
+            "total_tokens": 647186339,
+            "cost": 25.89746224,
+            "actual_cost": 25.89746224,
+            "account_cost": 25.89746224
         },
         {
             "model": "codex-auto-review",
-            "requests": 2484,
-            "input_tokens": 37626933,
-            "output_tokens": 240741,
+            "requests": 2411,
+            "input_tokens": 37503596,
+            "output_tokens": 235394,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 275699456,
-            "total_tokens": 313567130,
-            "cost": 330.372943,
-            "actual_cost": 330.372943,
-            "account_cost": 330.372943
+            "cache_read_tokens": 270989056,
+            "total_tokens": 308728046,
+            "cost": 327.240648,
+            "actual_cost": 327.240648,
+            "account_cost": 327.240648
         },
         {
             "model": "gpt-5.6-terra",

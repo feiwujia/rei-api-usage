@@ -292,27 +292,27 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 20117,
-            "input_tokens": 106216375,
-            "output_tokens": 10447634,
+            "requests": 20028,
+            "input_tokens": 105962490,
+            "output_tokens": 10437778,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 2544851840,
-            "total_tokens": 2661515849,
-            "cost": 2140.711347,
-            "actual_cost": 2140.711347,
-            "account_cost": 2159.087911
+            "cache_read_tokens": 2536745088,
+            "total_tokens": 2653145356,
+            "cost": 2135.092866,
+            "actual_cost": 2135.092866,
+            "account_cost": 2153.46943
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 4533,
-            "input_tokens": 32127180,
-            "output_tokens": 2189040,
+            "requests": 4531,
+            "input_tokens": 31992931,
+            "output_tokens": 2188844,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 612840320,
-            "total_tokens": 647156540,
-            "cost": 25.87957484,
-            "actual_cost": 25.87957484,
-            "account_cost": 25.87957484
+            "cache_read_tokens": 612825472,
+            "total_tokens": 647007247,
+            "cost": 25.74266504,
+            "actual_cost": 25.74266504,
+            "account_cost": 25.74266504
         },
         {
             "model": "codex-auto-review",
@@ -340,15 +340,15 @@
         },
         {
             "model": "gpt-5.6-terra",
-            "requests": 889,
-            "input_tokens": 3608364,
-            "output_tokens": 240363,
+            "requests": 879,
+            "input_tokens": 3569486,
+            "output_tokens": 238344,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 29044864,
-            "total_tokens": 32893591,
-            "cost": 18.7656842,
-            "actual_cost": 18.7656842,
-            "account_cost": 18.7656842
+            "cache_read_tokens": 28809344,
+            "total_tokens": 32617174,
+            "cost": 18.5793242,
+            "actual_cost": 18.5793242,
+            "account_cost": 18.5793242
         }
     ],
     "rate_limits": [

@@ -281,15 +281,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 9495,
-            "input_tokens": 61138345,
-            "output_tokens": 5265305,
+            "requests": 9465,
+            "input_tokens": 61019592,
+            "output_tokens": 5248197,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 1147980672,
-            "total_tokens": 1214384322,
-            "cost": 1061.415743,
-            "actual_cost": 1061.415743,
-            "account_cost": 1076.486583
+            "cache_read_tokens": 1146157440,
+            "total_tokens": 1212425229,
+            "cost": 1059.397122,
+            "actual_cost": 1059.397122,
+            "account_cost": 1074.467962
         },
         {
             "model": "gpt-5.6-luna",

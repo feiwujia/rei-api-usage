@@ -332,11 +332,10 @@
     "rate_limits": [
         {
             "limit": 150,
-            "remaining": 103.84395156,
-            "reset_at": "2026-08-27T00:00:00+08:00",
-            "used": 46.15604844,
+            "remaining": 150,
+            "used": 0,
             "window": "7d",
-            "window_start": "2026-08-20T00:00:00+08:00"
+            "window_start": null
         }
     ],
     "status": "active",

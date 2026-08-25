@@ -353,7 +353,7 @@
     "status": "active",
     "usage": {
         "average_duration_ms": 13517.809132136423,
-        "rpm": 2,
+        "rpm": 0,
         "today": {
             "actual_cost": 132.73875316,
             "cache_creation_tokens": 0,
@@ -374,6 +374,6 @@
             "requests": 80485,
             "total_tokens": 10673617684
         },
-        "tpm": 1174474
+        "tpm": 0
     }
 }

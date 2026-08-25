@@ -1,6 +1,6 @@
 # REI API Usage
 
-Updated: `2026-08-25T20:38:26+08:00`
+Updated: `2026-08-25T21:34:07+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
@@ -63,8 +63,8 @@ Updated: `2026-08-25T20:38:26+08:00`
 | Field | Value |
 |---|---:|
 | average_duration_ms | 13,517.80913214 |
-| rpm | 2 |
-| tpm | 1,174,474 |
+| rpm | 0 |
+| tpm | 0 |
 
 #### Today
 

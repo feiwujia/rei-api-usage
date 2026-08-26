@@ -1,6 +1,6 @@
 # REI API Usage
 
-Updated: `2026-08-27T04:29:54+08:00`
+Updated: `2026-08-27T07:58:18+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
@@ -60,7 +60,7 @@ Updated: `2026-08-27T04:29:54+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 13,453.90922286 |
+| average_duration_ms | 13,450.65233118 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -81,11 +81,11 @@ Updated: `2026-08-27T04:29:54+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 8,795.34273601 |
+| actual_cost | 8,791.91792591 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 9,937,264,000 |
-| cost | 8,795.34273601 |
-| input_tokens | 625,430,308 |
-| output_tokens | 39,318,059 |
-| requests | 79,921 |
-| total_tokens | 10,602,012,367 |
+| cache_read_tokens | 9,936,246,656 |
+| cost | 8,791.91792591 |
+| input_tokens | 624,943,929 |
+| output_tokens | 39,293,459 |
+| requests | 79,895 |
+| total_tokens | 10,600,484,044 |

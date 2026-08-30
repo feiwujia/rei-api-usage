@@ -285,25 +285,24 @@
         },
         {
             "model": "gpt-5.6-terra",
-            "requests": 220,
-            "input_tokens": 1403001,
-            "output_tokens": 56433,
+            "requests": 217,
+            "input_tokens": 1383462,
+            "output_tokens": 55445,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 5329920,
-            "total_tokens": 6789354,
-            "cost": 4.5645907,
-            "actual_cost": 4.5645907,
-            "account_cost": 4.5645907
+            "cache_read_tokens": 5276416,
+            "total_tokens": 6715323,
+            "cost": 4.4875472,
+            "actual_cost": 4.4875472,
+            "account_cost": 4.4875472
         }
     ],
     "rate_limits": [
         {
             "limit": 150,
-            "remaining": 149.140825,
-            "reset_at": "2026-09-04T00:00:00+08:00",
-            "used": 0.859175,
+            "remaining": 150,
+            "used": 0,
             "window": "7d",
-            "window_start": "2026-08-28T00:00:00+08:00"
+            "window_start": null
         }
     ],
     "status": "active",

@@ -1,17 +1,6 @@
 {
     "daily_usage": [
         {
-            "date": "2026-08-08",
-            "requests": 448,
-            "input_tokens": 5726377,
-            "output_tokens": 282550,
-            "cache_read_tokens": 54888960,
-            "cache_write_tokens": 0,
-            "total_tokens": 60897887,
-            "cost": 31.98318932,
-            "actual_cost": 31.98318932
-        },
-        {
             "date": "2026-08-09",
             "requests": 2550,
             "input_tokens": 26626345,
@@ -182,15 +171,15 @@
     "model_stats": [
         {
             "model": "gpt-5.6-luna",
-            "requests": 4666,
-            "input_tokens": 37128631,
-            "output_tokens": 2145075,
+            "requests": 4625,
+            "input_tokens": 36935943,
+            "output_tokens": 2121469,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 634267520,
-            "total_tokens": 673541226,
-            "cost": 26.77066592,
-            "actual_cost": 26.77066592,
-            "account_cost": 26.77066592
+            "cache_read_tokens": 627926144,
+            "total_tokens": 666983556,
+            "cost": 26.5769736,
+            "actual_cost": 26.5769736,
+            "account_cost": 26.5769736
         },
         {
             "model": "gpt-5.6-sol",
@@ -206,15 +195,15 @@
         },
         {
             "model": "codex-auto-review",
-            "requests": 615,
-            "input_tokens": 20611929,
-            "output_tokens": 67012,
+            "requests": 610,
+            "input_tokens": 20427863,
+            "output_tokens": 66631,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 69322112,
-            "total_tokens": 90001053,
-            "cost": 136.89571636,
-            "actual_cost": 136.89571636,
-            "account_cost": 136.89571636
+            "cache_read_tokens": 69043072,
+            "total_tokens": 89537566,
+            "cost": 135.82443636,
+            "actual_cost": 135.82443636,
+            "account_cost": 135.82443636
         },
         {
             "model": "gpt-5.5",

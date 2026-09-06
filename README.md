@@ -1,6 +1,6 @@
 # REI API Usage
 
-Updated: `2026-09-07T00:26:02+08:00`
+Updated: `2026-09-07T02:29:29+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
@@ -43,7 +43,7 @@ Updated: `2026-09-07T00:26:02+08:00`
 | model | requests | input_tokens | output_tokens | cache_creation_tokens | cache_read_tokens | total_tokens | cost | actual_cost | account_cost |
 |---|---|---|---|---|---|---|---|---|---|
 | gpt-5.6-luna | 4,625 | 36,935,943 | 2,121,469 | 0 | 627,926,144 | 666,983,556 | 26.5769736 | 26.5769736 | 26.5769736 |
-| gpt-5.6-sol | 3,501 | 24,841,907 | 1,893,331 | 0 | 506,304,640 | 533,039,878 | 518.398298 | 518.398298 | 533.469138 |
+| gpt-5.6-sol | 3,500 | 24,798,934 | 1,892,230 | 0 | 506,300,800 | 532,991,964 | 518.148483 | 518.148483 | 533.219323 |
 | codex-auto-review | 610 | 20,427,863 | 66,631 | 0 | 69,043,072 | 89,537,566 | 135.82443636 | 135.82443636 | 135.82443636 |
 | gpt-5.5 | 62 | 351,511 | 26,117 | 0 | 2,495,104 | 2,872,732 | 3.788617 | 3.788617 | 3.788617 |
 | gpt-5.6-terra | 47 | 425,878 | 10,550 | 0 | 1,154,304 | 1,590,732 | 1.2092168 | 1.2092168 | 1.2092168 |
@@ -53,7 +53,7 @@ Updated: `2026-09-07T00:26:02+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 13,328.14327171 |
+| average_duration_ms | 13,312.92075417 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -74,11 +74,11 @@ Updated: `2026-09-07T00:26:02+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 8,439.46433112 |
+| actual_cost | 8,423.06552612 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 9,607,504,640 |
-| cost | 8,439.46433112 |
-| input_tokens | 599,208,715 |
-| output_tokens | 36,767,881 |
-| requests | 76,156 |
-| total_tokens | 10,243,481,236 |
+| cache_read_tokens | 9,595,709,952 |
+| cost | 8,423.06552612 |
+| input_tokens | 597,835,907 |
+| output_tokens | 36,628,177 |
+| requests | 76,004 |
+| total_tokens | 10,230,174,036 |

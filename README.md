@@ -1,6 +1,6 @@
 # REI API Usage
 
-Updated: `2026-09-09T13:17:13+08:00`
+Updated: `2026-09-09T17:57:49+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
@@ -40,7 +40,7 @@ Updated: `2026-09-09T13:17:13+08:00`
 
 | model | requests | input_tokens | output_tokens | cache_creation_tokens | cache_read_tokens | total_tokens | cost | actual_cost | account_cost |
 |---|---|---|---|---|---|---|---|---|---|
-| gpt-5.6-luna | 3,188 | 29,940,016 | 1,116,206 | 0 | 422,034,432 | 453,090,654 | 19.85363836 | 19.85363836 | 19.85363836 |
+| gpt-5.6-luna | 2,797 | 29,167,657 | 1,015,257 | 0 | 352,001,792 | 382,184,706 | 18.17737496 | 18.17737496 | 18.17737496 |
 | gpt-5.6-sol | 2,266 | 16,595,431 | 1,211,517 | 0 | 340,105,344 | 357,912,292 | 373.61185 | 373.61185 | 388.68269 |
 | codex-auto-review | 79 | 421,488 | 5,138 | 0 | 1,383,808 | 1,810,434 | 0.11813936 | 0.11813936 | 0.11813936 |
 | gpt-5.5 | 36 | 130,381 | 10,548 | 0 | 1,505,792 | 1,646,721 | 1.721241 | 1.721241 | 1.721241 |
@@ -51,7 +51,7 @@ Updated: `2026-09-09T13:17:13+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 13,273.70700696 |
+| average_duration_ms | 13,272.91888355 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -72,11 +72,11 @@ Updated: `2026-09-09T13:17:13+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 8,297.94946872 |
+| actual_cost | 8,292.14144522 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 9,496,309,760 |
-| cost | 8,297.94946872 |
-| input_tokens | 585,595,387 |
-| output_tokens | 35,937,196 |
-| requests | 74,954 |
-| total_tokens | 10,117,842,343 |
+| cache_read_tokens | 9,490,707,968 |
+| cost | 8,292.14144522 |
+| input_tokens | 585,194,366 |
+| output_tokens | 35,893,191 |
+| requests | 74,880 |
+| total_tokens | 10,111,795,525 |

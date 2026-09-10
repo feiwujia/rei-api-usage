@@ -1,14 +1,14 @@
 # REI API Usage
 
-Updated: `2026-09-10T13:17:31+08:00`
+Updated: `2026-09-10T17:55:52+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
 ## Rate Limits
 
-| limit | remaining | used | window | window_start |
-|---|---|---|---|---|
-| 150 | 150 | 0 | 7d | 2026-08-30T00:00:00+08:00 |
+| limit | remaining | reset_at | used | window | window_start |
+|---|---|---|---|---|---|
+| 150 | 148.25828604 | 2026-09-17T00:00:00+08:00 | 1.74171396 | 7d | 2026-09-10T00:00:00+08:00 |
 
 ## Overview
 
@@ -22,6 +22,7 @@ Updated: `2026-09-10T13:17:31+08:00`
 
 | date | requests | input_tokens | output_tokens | cache_read_tokens | cache_write_tokens | total_tokens | cost | actual_cost |
 |---|---|---|---|---|---|---|---|---|
+| 2026-09-10 | 17 | 488,380 | 3,973 | 447,104 | 0 | 939,457 | 1.74171396 | 1.74171396 |
 | 2026-09-05 | 1 | 92 | 19 | 1,408 | 0 | 1,519 | 0.00006936 | 0.00006936 |
 | 2026-08-30 | 1 | 551 | 47 | 3,840 | 0 | 4,438 | 0.0030425 | 0.0030425 |
 | 2026-08-28 | 6 | 78,871 | 9,734 | 345,600 | 0 | 434,205 | 0.859175 | 0.859175 |
@@ -40,18 +41,18 @@ Updated: `2026-09-10T13:17:31+08:00`
 
 | model | requests | input_tokens | output_tokens | cache_creation_tokens | cache_read_tokens | total_tokens | cost | actual_cost | account_cost |
 |---|---|---|---|---|---|---|---|---|---|
-| gpt-5.6-luna | 2,797 | 29,167,657 | 1,015,257 | 0 | 352,001,792 | 382,184,706 | 18.17737496 | 18.17737496 | 18.17737496 |
-| gpt-5.6-sol | 2,266 | 16,595,431 | 1,211,517 | 0 | 340,105,344 | 357,912,292 | 373.61185 | 373.61185 | 388.68269 |
+| gpt-5.6-luna | 2,800 | 29,276,554 | 1,015,438 | 0 | 352,005,120 | 382,297,112 | 18.19943812 | 18.19943812 | 18.19943812 |
+| gpt-5.6-sol | 2,272 | 16,854,181 | 1,212,472 | 0 | 340,215,296 | 358,281,949 | 374.989226 | 374.989226 | 390.060066 |
 | codex-auto-review | 79 | 421,488 | 5,138 | 0 | 1,383,808 | 1,810,434 | 0.11813936 | 0.11813936 | 0.11813936 |
 | gpt-5.5 | 36 | 130,381 | 10,548 | 0 | 1,505,792 | 1,646,721 | 1.721241 | 1.721241 | 1.721241 |
-| gpt-5.6-terra | 32 | 254,753 | 5,697 | 0 | 795,648 | 1,056,098 | 0.7369996 | 0.7369996 | 0.7369996 |
+| gpt-5.6-terra | 40 | 375,486 | 8,534 | 0 | 1,129,472 | 1,513,492 | 1.0792744 | 1.0792744 | 1.0792744 |
 | gpt-5.4 | 1 | 551 | 47 | 0 | 3,840 | 4,438 | 0.0030425 | 0.0030425 | 0.0030425 |
 
 ### Usage
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 13,263.2641726 |
+| average_duration_ms | 13,264.75954822 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -59,24 +60,24 @@ Updated: `2026-09-10T13:17:31+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 0 |
+| actual_cost | 1.74171396 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 0 |
-| cost | 0 |
-| input_tokens | 0 |
-| output_tokens | 0 |
-| requests | 0 |
-| total_tokens | 0 |
+| cache_read_tokens | 447,104 |
+| cost | 1.74171396 |
+| input_tokens | 488,380 |
+| output_tokens | 3,973 |
+| requests | 17 |
+| total_tokens | 939,457 |
 
 #### Total
 
 | Field | Value |
 |---|---:|
-| actual_cost | 8,216.61263752 |
+| actual_cost | 8,213.19075273 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 9,404,728,576 |
-| cost | 8,216.61263752 |
-| input_tokens | 580,979,480 |
-| output_tokens | 35,438,228 |
-| requests | 74,069 |
-| total_tokens | 10,021,146,284 |
+| cache_read_tokens | 9,401,833,472 |
+| cost | 8,213.19075273 |
+| input_tokens | 580,840,347 |
+| output_tokens | 35,411,408 |
+| requests | 74,019 |
+| total_tokens | 10,018,085,227 |

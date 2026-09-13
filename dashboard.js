@@ -192,9 +192,72 @@ async function loadDashboard() {
   if (report?.ok) {
     data.updated = (await report.text()).match(/^Updated: `([^`]+)`/m)?.[1];
   }
+  data.history = [];
+  try {
+    const history = await fetch("./data/usage-history.jsonl", { cache: "no-store" });
+    if (!history.ok) throw new Error(`History: ${history.status}`);
+    data.history = (await history.text()).split(/\r?\n/).filter(line => line.trim()).map(JSON.parse);
+  } catch (error) {
+    data.historyUnavailable = true;
+  }
+  data.trends = buildTrends(data, raw);
   return data;
 }
 
+function shanghaiDay(value) {
+  const time = Date.parse(value);
+  return Number.isFinite(time) ? new Date(time + 8 * 3600000).toISOString().slice(0, 10) : null;
+}
+
+function formatUpdated(value) {
+  const time = Date.parse(value);
+  return Number.isFinite(time)
+    ? new Date(time + 8 * 3600000).toISOString().slice(0, 19).replace("T", " ") + " (UTC+8)"
+    : "unavailable";
+}
+
+function buildTrends(data, raw) {
+  const snapshots = data.history.filter(row => Number.isFinite(Date.parse(row.fetched_at)))
+    .sort((a, b) => Date.parse(a.fetched_at) - Date.parse(b.fetched_at));
+  if (data.updated && shanghaiDay(data.updated)) snapshots.push({ fetched_at: data.updated, data: raw });
+  const daily = new Map();
+  const modelDays = new Map();
+  const names = new Set();
+  for (const snapshot of snapshots) {
+    for (const row of snapshot.data.daily_usage || []) daily.set(row.date, row);
+    const models = snapshot.data.model_stats;
+    if (!Array.isArray(models)) continue;
+    const values = new Map(models.map(model => [model.model, Number(model.actual_cost ?? model.cost ?? 0)]));
+    for (const name of values.keys()) names.add(name);
+    // Keep the last observed window total per day; differences are not daily costs.
+    modelDays.set(shanghaiDay(snapshot.fetched_at), values);
+  }
+  for (const row of data.daily) daily.set(row.date, row);
+  const dates = [...new Set([...daily.keys(), ...modelDays.keys()])].sort();
+  return { daily, modelDays, names: [...names].sort(), dates,
+    end: shanghaiDay(data.updated) || dates.at(-1) };
+}
+
+function trendSeries(trends, range, mode, selectedModel = "") {
+  if (!trends.end || !trends.dates.length) return { labels: [], datasets: [] };
+  const end = Date.parse(trends.end + "T00:00:00Z");
+  const start = range === "all" ? Date.parse(trends.dates[0] + "T00:00:00Z")
+    : end - (Number(range) - 1) * 86400000;
+  const labels = [];
+  for (let day = start; day <= end; day += 86400000) labels.push(new Date(day).toISOString().slice(0, 10));
+  const colors = ["#2563eb", "#059669", "#d97706", "#dc2626", "#7c3aed", "#0891b2", "#be185d", "#64748b"];
+  const datasets = mode === "total" ? [{ label: "Daily cost", borderColor: colors[0],
+    data: labels.map(day => {
+      const row = trends.daily.get(day);
+      return row ? Number(row.actual_cost ?? row.cost ?? 0) : null;
+    }) }] : trends.names.filter(name => !selectedModel || name === selectedModel).map(name => ({
+      label: name,
+      borderColor: colors[trends.names.indexOf(name) % colors.length],
+      data: labels.map(day => trends.modelDays.get(day)?.get(name) ?? null)
+    }));
+  return { labels, datasets: datasets.map(dataset => ({ ...dataset, tension: 0,
+    pointRadius: 2, borderWidth: 2, fill: false, spanGaps: false })) };
+}
 
 function renderSummary(data) {
 
@@ -220,7 +283,7 @@ function renderSummary(data) {
 
   document.querySelector("#updated").textContent =
     data.updated
-      ? `Updated: ${data.updated} (UTC+8)`
+      ? `Updated: ${formatUpdated(data.updated)}`
       : "Update time unavailable";
 }
 
@@ -268,69 +331,46 @@ function renderQuota(data) {
 
 
 function renderDailyChart(data) {
-
-  const labels =
-    data.daily.map(
-      row => row.date.slice(5)
-    );
-
-
-  const costs =
-    data.daily.map(
-      row =>
-        Number(
-          row.actual_cost ??
-          row.cost ??
-          0
-        )
-    );
-
-
-  new Chart(
-    document.querySelector("#costChart"),
-    {
-      type: "line",
-
-      data: {
-        labels,
-
-        datasets: [
-          {
-            label: "Daily cost",
-            data: costs,
-            tension: 0.3,
-            fill: true
-          }
-        ]
-      },
-
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-
-        interaction: {
-          intersect: false,
-          mode: "index"
-        },
-
-        plugins: {
-          legend: {
-            display: false
-          },
-
-          tooltip: {
-            callbacks: {
-              label(context) {
-                return formatMoney(
-                  context.raw
-                );
-              }
-            }
-          }
-        }
+  const modelSelect = document.querySelector("#trendModel");
+  for (const name of data.trends.names) {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    modelSelect.append(option);
+  }
+  const chart = new Chart(document.querySelector("#costChart"), {
+    type: "line",
+    data: trendSeries(data.trends, "30", "total"),
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { intersect: false, mode: "index" },
+      scales: { y: { beginAtZero: true, title: { display: true, text: "USD" } } },
+      plugins: {
+        legend: { display: false, position: "bottom" },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${formatMoney(ctx.raw)}` } }
       }
     }
-  );
+  });
+  function update() {
+    const range = document.querySelector('input[name="range"]:checked').value;
+    const mode = document.querySelector('input[name="mode"]:checked').value;
+    modelSelect.hidden = mode !== "models";
+    chart.data = trendSeries(data.trends, range, mode, modelSelect.value);
+    chart.options.plugins.legend.display = mode === "models";
+    document.querySelector("#trendMetric").textContent = mode === "models"
+      ? "Reported model cost · window totals, last snapshot per day"
+      : "Daily API cost";
+    const notice = document.querySelector("#trendNotice");
+    const hasData = chart.data.datasets.some(dataset => dataset.data.some(value => value !== null));
+    notice.textContent = data.historyUnavailable ? "History unavailable; showing latest data only."
+      : !hasData ? "No observations in this period." : "";
+    notice.hidden = !notice.textContent;
+    chart.update();
+  }
+  for (const selector of ["#trendRange", "#trendMode", "#trendModel"]) {
+    document.querySelector(selector).addEventListener("change", update);
+  }
+  update();
 }
 
 

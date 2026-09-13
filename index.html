@@ -6,7 +6,7 @@
 
   <title>REI API Usage</title>
 
-  <link rel="stylesheet" href="./dashboard.css" />
+  <link rel="stylesheet" href="./dashboard.css?v=20260913-2" />
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 </head>
@@ -58,9 +58,27 @@
       <div class="panel-header">
         <div>
           <h2>Cost over time</h2>
-          <p class="muted">Daily API cost</p>
+          <p id="trendMetric" class="muted">Daily API cost</p>
+        </div>
+        <div class="chart-controls">
+          <fieldset class="segmented" id="trendRange">
+            <legend class="sr-only">Time range</legend>
+            <label><input type="radio" name="range" value="7"><span>7d</span></label>
+            <label><input type="radio" name="range" value="30" checked><span>30d</span></label>
+            <label><input type="radio" name="range" value="all"><span>All</span></label>
+          </fieldset>
+          <fieldset class="segmented" id="trendMode">
+            <legend class="sr-only">Cost breakdown</legend>
+            <label><input type="radio" name="mode" value="total" checked><span>Total</span></label>
+            <label><input type="radio" name="mode" value="models"><span>By model</span></label>
+          </fieldset>
+          <select id="trendModel" aria-label="Model" hidden>
+            <option value="">All models</option>
+          </select>
         </div>
       </div>
+
+      <p id="trendNotice" class="muted" role="status" hidden></p>
 
       <div class="chart-container">
         <canvas id="costChart"></canvas>
@@ -158,6 +176,6 @@
 
   </main>
 
-  <script src="./dashboard.js"></script>
+  <script src="./dashboard.js?v=20260913-2"></script>
 </body>
 </html>

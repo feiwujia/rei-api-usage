@@ -358,7 +358,7 @@ function renderDailyChart(data) {
       interaction: { intersect: false, mode: "index" },
       scales: { y: { beginAtZero: true, title: { display: true, text: "Tokens" } } },
       plugins: {
-        legend: { display: true, position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
+        legend: { display: false, position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
         tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${formatMoney(ctx.raw)}` } }
       }
     }
@@ -370,7 +370,7 @@ function renderDailyChart(data) {
     chart.data = trendSeries(data.trends, range, mode, "");
     chart.config.type = range === "today" || range === "24h" ? "bar" : "line";
     if (mode === "models") chart.data.datasets = chart.data.datasets.filter(dataset => selectedModels.has(dataset.label));
-    chart.options.plugins.legend.display = mode === "models" || range === "today" || range === "24h";
+    chart.options.plugins.legend.display = mode === "models";
     chart.options.scales.y.title.text = range === "today" || range === "24h" ? "Tokens" : "USD";
     document.querySelector("#trendMetric").textContent = range === "today"
       ? "Token composition today" : range === "24h" ? "Latest 24h view"
@@ -388,21 +388,6 @@ function renderDailyChart(data) {
   }
   update();
 }
-
-function renderTodayChart(data) {
-  const today = data.summary;
-  new Chart(document.querySelector("#todayChart"), {
-    type: "doughnut",
-    data: { labels: ["Input", "Output", "Cache read"], datasets: [{
-      data: [today.input_tokens || 0, today.output_tokens || 0, today.cache_read_tokens || 0],
-      backgroundColor: ["#2563eb", "#10b981", "#f59e0b"], borderColor: "#fff", borderWidth: 3
-    }] },
-    options: { responsive: true, maintainAspectRatio: false, cutout: "66%",
-      plugins: { legend: { position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
-        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${formatTokens(ctx.raw)}` } } } }
-  });
-}
-
 
 function renderModelChart(data) {
 
@@ -526,7 +511,6 @@ async function main() {
     renderDailyChart(data);
 
     renderModelChart(data);
-    renderTodayChart(data);
 
   } catch (error) {
 

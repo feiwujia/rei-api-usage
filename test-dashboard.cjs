@@ -18,7 +18,7 @@ const context = vm.createContext({
       value: selector.includes('range') ? '30' : selector.includes('mode') ? 'total' : ''
     });
     return elements.get(selector);
-  }, createElement() { return {}; } },
+  }, createElement() { return { innerHTML: '', querySelector() { return { addEventListener() {} }; } }; } },
   Chart: function (element, config) { charts.push(config); Object.assign(this, config); this.update = () => {}; }
 });
 const source = fs.readFileSync(path.join(__dirname, 'dashboard.js'), 'utf8');

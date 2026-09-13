@@ -331,12 +331,16 @@ function renderQuota(data) {
 
 
 function renderDailyChart(data) {
-  const modelSelect = document.querySelector("#trendModel");
+  const modelChecks = document.querySelector("#trendModels");
+  const selectedModels = new Set(data.trends.names);
   for (const name of data.trends.names) {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    modelSelect.append(option);
+    const label = document.createElement("label");
+    label.innerHTML = `<input type="checkbox" value="${name}" checked><span>${name}</span>`;
+    label.querySelector("input").addEventListener("change", event => {
+      event.target.checked ? selectedModels.add(name) : selectedModels.delete(name);
+      update();
+    });
+    modelChecks.append(label);
   }
   const chart = new Chart(document.querySelector("#costChart"), {
     type: "line",
@@ -354,8 +358,9 @@ function renderDailyChart(data) {
   function update() {
     const range = document.querySelector('input[name="range"]:checked').value;
     const mode = document.querySelector('input[name="mode"]:checked').value;
-    modelSelect.hidden = mode !== "models";
-    chart.data = trendSeries(data.trends, range, mode, modelSelect.value);
+    modelChecks.hidden = mode !== "models";
+    chart.data = trendSeries(data.trends, range, mode, "");
+    if (mode === "models") chart.data.datasets = chart.data.datasets.filter(dataset => selectedModels.has(dataset.label));
     chart.options.plugins.legend.display = mode === "models";
     document.querySelector("#trendMetric").textContent = mode === "models"
       ? "Reported model cost · window totals, last snapshot per day"
@@ -367,10 +372,24 @@ function renderDailyChart(data) {
     notice.hidden = !notice.textContent;
     chart.update();
   }
-  for (const selector of ["#trendRange", "#trendMode", "#trendModel"]) {
+  for (const selector of ["#trendRange", "#trendMode"]) {
     document.querySelector(selector).addEventListener("change", update);
   }
   update();
+}
+
+function renderTodayChart(data) {
+  const today = data.summary;
+  new Chart(document.querySelector("#todayChart"), {
+    type: "doughnut",
+    data: { labels: ["Input", "Output", "Cache read"], datasets: [{
+      data: [today.input_tokens || 0, today.output_tokens || 0, today.cache_read_tokens || 0],
+      backgroundColor: ["#2563eb", "#10b981", "#f59e0b"], borderColor: "#fff", borderWidth: 3
+    }] },
+    options: { responsive: true, maintainAspectRatio: false, cutout: "66%",
+      plugins: { legend: { position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${formatTokens(ctx.raw)}` } } } }
+  });
 }
 
 
@@ -496,6 +515,7 @@ async function main() {
     renderDailyChart(data);
 
     renderModelChart(data);
+    renderTodayChart(data);
 
   } catch (error) {
 

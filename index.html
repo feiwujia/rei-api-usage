@@ -72,9 +72,7 @@
             <label><input type="radio" name="mode" value="total" checked><span>Total</span></label>
             <label><input type="radio" name="mode" value="models"><span>By model</span></label>
           </fieldset>
-          <select id="trendModel" aria-label="Model" hidden>
-            <option value="">All models</option>
-          </select>
+          <div id="trendModels" class="model-checks" hidden aria-label="Models"></div>
         </div>
       </div>
 
@@ -84,6 +82,11 @@
         <canvas id="costChart"></canvas>
       </div>
 
+    </section>
+
+    <section class="panel today-panel">
+      <div class="panel-header"><div><h2>Today</h2><p class="muted">Token composition</p></div></div>
+      <div class="today-chart-container"><canvas id="todayChart"></canvas></div>
     </section>
 
 

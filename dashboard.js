@@ -57,7 +57,10 @@ function normalize(raw) {
     requests: today.requests || 0,
     tokens: today.total_tokens || 0,
     cost: today.actual_cost ?? today.cost ?? 0,
-    latency: raw.usage?.average_duration_ms || 0
+    latency: raw.usage?.average_duration_ms || 0,
+    input_tokens: today.input_tokens || 0,
+    output_tokens: today.output_tokens || 0,
+    cache_read_tokens: today.cache_read_tokens || 0
   };
 
 
@@ -234,11 +237,16 @@ function buildTrends(data, raw) {
   }
   for (const row of data.daily) daily.set(row.date, row);
   const dates = [...new Set([...daily.keys(), ...modelDays.keys()])].sort();
-  return { daily, modelDays, names: [...names].sort(), dates,
+  return { daily, modelDays, names: [...names].sort(), dates, today: data.summary,
     end: shanghaiDay(data.updated) || dates.at(-1) };
 }
 
 function trendSeries(trends, range, mode, selectedModel = "") {
+  if (range === "today" || range === "24h") return { labels: [range === "today" ? "Today" : "Last 24h"], datasets: [{
+    label: "Input", data: [trends.today.input_tokens], backgroundColor: "#2563eb"
+  }, { label: "Output", data: [trends.today.output_tokens], backgroundColor: "#10b981" }, {
+    label: "Cache read", data: [trends.today.cache_read_tokens], backgroundColor: "#f59e0b"
+  }] };
   if (!trends.end || !trends.dates.length) return { labels: [], datasets: [] };
   const end = Date.parse(trends.end + "T00:00:00Z");
   const start = range === "all" ? Date.parse(trends.dates[0] + "T00:00:00Z")
@@ -344,13 +352,13 @@ function renderDailyChart(data) {
   }
   const chart = new Chart(document.querySelector("#costChart"), {
     type: "line",
-    data: trendSeries(data.trends, "30", "total"),
+    data: trendSeries(data.trends, "today", "total"),
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { intersect: false, mode: "index" },
-      scales: { y: { beginAtZero: true, title: { display: true, text: "USD" } } },
+      scales: { y: { beginAtZero: true, title: { display: true, text: "Tokens" } } },
       plugins: {
-        legend: { display: false, position: "bottom" },
+        legend: { display: true, position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
         tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${formatMoney(ctx.raw)}` } }
       }
     }
@@ -358,13 +366,16 @@ function renderDailyChart(data) {
   function update() {
     const range = document.querySelector('input[name="range"]:checked').value;
     const mode = document.querySelector('input[name="mode"]:checked').value;
-    modelChecks.hidden = mode !== "models";
+    modelChecks.hidden = mode !== "models" || range === "today" || range === "24h";
     chart.data = trendSeries(data.trends, range, mode, "");
+    chart.config.type = range === "today" || range === "24h" ? "bar" : "line";
     if (mode === "models") chart.data.datasets = chart.data.datasets.filter(dataset => selectedModels.has(dataset.label));
-    chart.options.plugins.legend.display = mode === "models";
-    document.querySelector("#trendMetric").textContent = mode === "models"
-      ? "Reported model cost · window totals, last snapshot per day"
-      : "Daily API cost";
+    chart.options.plugins.legend.display = mode === "models" || range === "today" || range === "24h";
+    chart.options.scales.y.title.text = range === "today" || range === "24h" ? "Tokens" : "USD";
+    document.querySelector("#trendMetric").textContent = range === "today"
+      ? "Token composition today" : range === "24h" ? "Latest 24h view"
+      : mode === "models" ? "Reported model cost · window totals, last snapshot per day" : "Daily API cost";
+    document.querySelector("#trendTitle").textContent = range === "today" || range === "24h" ? "Token usage" : "Cost over time";
     const notice = document.querySelector("#trendNotice");
     const hasData = chart.data.datasets.some(dataset => dataset.data.some(value => value !== null));
     notice.textContent = data.historyUnavailable ? "History unavailable; showing latest data only."

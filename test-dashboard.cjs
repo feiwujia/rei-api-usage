@@ -19,7 +19,7 @@ const context = vm.createContext({
     });
     return elements.get(selector);
   }, createElement() { return { innerHTML: '', querySelector() { return { addEventListener() {} }; } }; } },
-  Chart: function (element, config) { charts.push(config); Object.assign(this, config); this.update = () => {}; }
+  Chart: function (element, config) { charts.push(config); this.config = { type: 'line' }; Object.assign(this, config); this.update = () => {}; }
 });
 const source = fs.readFileSync(path.join(__dirname, 'dashboard.js'), 'utf8');
 (async () => {

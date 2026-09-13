@@ -57,14 +57,16 @@
 
       <div class="panel-header">
         <div>
-          <h2>Cost over time</h2>
+          <h2 id="trendTitle">Usage overview</h2>
           <p id="trendMetric" class="muted">Daily API cost</p>
         </div>
         <div class="chart-controls">
           <fieldset class="segmented" id="trendRange">
             <legend class="sr-only">Time range</legend>
+            <label><input type="radio" name="range" value="today" checked><span>Today</span></label>
+            <label><input type="radio" name="range" value="24h"><span>24h</span></label>
             <label><input type="radio" name="range" value="7"><span>7d</span></label>
-            <label><input type="radio" name="range" value="30" checked><span>30d</span></label>
+            <label><input type="radio" name="range" value="30"><span>30d</span></label>
             <label><input type="radio" name="range" value="all"><span>All</span></label>
           </fieldset>
           <fieldset class="segmented" id="trendMode">

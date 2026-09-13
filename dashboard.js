@@ -187,8 +187,12 @@ async function loadDashboard() {
   }
 
   const raw = await response.json();
-
-  return normalize(raw);
+  const data = normalize(raw);
+  const report = await fetch("./README.md", { cache: "no-store" }).catch(() => null);
+  if (report?.ok) {
+    data.updated = (await report.text()).match(/^Updated: `([^`]+)`/m)?.[1];
+  }
+  return data;
 }
 
 
@@ -214,13 +218,10 @@ function renderSummary(data) {
     `${data.status || "unknown"} · ${data.mode || "unknown"}`;
 
 
-  const latest =
-    data.daily[data.daily.length - 1];
-
   document.querySelector("#updated").textContent =
-    latest
-      ? `Latest usage: ${latest.date}`
-      : "No usage data";
+    data.updated
+      ? `Updated: ${data.updated} (UTC+8)`
+      : "Update time unavailable";
 }
 
 
@@ -336,7 +337,10 @@ function renderDailyChart(data) {
 function renderModelChart(data) {
 
   const models =
-    data.models.slice(0, 7);
+    data.models;
+
+  document.querySelector("#modelChart").parentElement.style.height =
+    `${Math.max(280, models.length * 40)}px`;
 
 
   new Chart(
@@ -447,11 +451,11 @@ async function main() {
 
     renderQuota(data);
 
+    renderModelTable(data);
+
     renderDailyChart(data);
 
     renderModelChart(data);
-
-    renderModelTable(data);
 
   } catch (error) {
 

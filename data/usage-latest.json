@@ -145,14 +145,14 @@
         },
         {
             "date": "2026-09-14",
-            "requests": 27,
-            "input_tokens": 110459,
-            "output_tokens": 8572,
-            "cache_read_tokens": 937216,
+            "requests": 29,
+            "input_tokens": 132085,
+            "output_tokens": 8975,
+            "cache_read_tokens": 962304,
             "cache_write_tokens": 0,
-            "total_tokens": 1056247,
-            "cost": 1.278063,
-            "actual_cost": 1.278063
+            "total_tokens": 1103364,
+            "cost": 1.410827,
+            "actual_cost": 1.410827
         }
     ],
     "isValid": true,
@@ -160,27 +160,27 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 1214,
-            "input_tokens": 11565428,
-            "output_tokens": 686851,
+            "requests": 1216,
+            "input_tokens": 11587054,
+            "output_tokens": 687254,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 197110016,
-            "total_tokens": 209362295,
-            "cost": 240.348027,
-            "actual_cost": 240.348027,
-            "account_cost": 255.418867
+            "cache_read_tokens": 197135104,
+            "total_tokens": 209409412,
+            "cost": 240.480791,
+            "actual_cost": 240.480791,
+            "account_cost": 255.551631
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 1142,
-            "input_tokens": 14944864,
-            "output_tokens": 712515,
+            "requests": 969,
+            "input_tokens": 13635010,
+            "output_tokens": 678827,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 182053760,
-            "total_tokens": 197711139,
-            "cost": 9.5023696,
-            "actual_cost": 9.5023696,
-            "account_cost": 9.5023696
+            "cache_read_tokens": 159050624,
+            "total_tokens": 173364461,
+            "cost": 8.73991048,
+            "actual_cost": 8.73991048,
+            "account_cost": 8.73991048
         },
         {
             "model": "gpt-6-astra",
@@ -246,36 +246,36 @@
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 289.64875412,
+            "remaining": 289.51599012,
             "reset_at": "2026-09-19T00:00:00+08:00",
-            "used": 10.35124588,
+            "used": 10.48400988,
             "window": "7d",
             "window_start": "2026-09-12T00:00:00+08:00"
         }
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13135.288043403232,
+        "average_duration_ms": 13098.108959308705,
         "rpm": 0,
         "today": {
-            "actual_cost": 1.278063,
+            "actual_cost": 1.410827,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 937216,
-            "cost": 1.278063,
-            "input_tokens": 110459,
-            "output_tokens": 8572,
-            "requests": 27,
-            "total_tokens": 1056247
+            "cache_read_tokens": 962304,
+            "cost": 1.410827,
+            "input_tokens": 132085,
+            "output_tokens": 8975,
+            "requests": 29,
+            "total_tokens": 1103364
         },
         "total": {
-            "actual_cost": 8074.5380354,
+            "actual_cost": 8022.9227462,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 9313689088,
-            "cost": 8074.5380354,
-            "input_tokens": 568108359,
-            "output_tokens": 34041232,
-            "requests": 72437,
-            "total_tokens": 9915838679
+            "cache_read_tokens": 9258055168,
+            "cost": 8022.9227462,
+            "input_tokens": 565227302,
+            "output_tokens": 33672041,
+            "requests": 71981,
+            "total_tokens": 9856954511
         },
         "tpm": 0
     }

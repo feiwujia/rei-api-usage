@@ -1,17 +1,6 @@
 {
     "daily_usage": [
         {
-            "date": "2026-08-16",
-            "requests": 2,
-            "input_tokens": 18398,
-            "output_tokens": 0,
-            "cache_read_tokens": 0,
-            "cache_write_tokens": 0,
-            "total_tokens": 18398,
-            "cost": 0.0700876,
-            "actual_cost": 0.0700876
-        },
-        {
             "date": "2026-08-19",
             "requests": 214,
             "input_tokens": 3586988,
@@ -255,27 +244,27 @@
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 13098.108959308705,
+        "average_duration_ms": 13076.42278544612,
         "rpm": 0,
         "today": {
-            "actual_cost": 1.410827,
+            "actual_cost": 0,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 962304,
-            "cost": 1.410827,
-            "input_tokens": 132085,
-            "output_tokens": 8975,
-            "requests": 29,
-            "total_tokens": 1103364
+            "cache_read_tokens": 0,
+            "cost": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "requests": 0,
+            "total_tokens": 0
         },
         "total": {
-            "actual_cost": 8022.9227462,
+            "actual_cost": 7997.24230355,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 9258055168,
-            "cost": 8022.9227462,
-            "input_tokens": 565227302,
-            "output_tokens": 33672041,
-            "requests": 71981,
-            "total_tokens": 9856954511
+            "cache_read_tokens": 9233404288,
+            "cost": 7997.24230355,
+            "input_tokens": 563239980,
+            "output_tokens": 33477960,
+            "requests": 71651,
+            "total_tokens": 9830122228
         },
         "tpm": 0
     }

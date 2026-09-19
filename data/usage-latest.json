@@ -258,9 +258,10 @@
         {
             "limit": 300,
             "remaining": 300,
+            "reset_at": "2026-09-26T00:00:00+08:00",
             "used": 0,
             "window": "7d",
-            "window_start": "2026-09-12T00:00:00+08:00"
+            "window_start": "2026-09-19T00:00:00+08:00"
         }
     ],
     "status": "active",

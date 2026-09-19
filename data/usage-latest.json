@@ -171,27 +171,27 @@
     "model_stats": [
         {
             "model": "gpt-5.6-sol",
-            "requests": 1197,
-            "input_tokens": 13090738,
-            "output_tokens": 615239,
+            "requests": 1196,
+            "input_tokens": 12909778,
+            "output_tokens": 614454,
             "cache_creation_tokens": 0,
             "cache_read_tokens": 205881728,
-            "total_tokens": 219587705,
-            "cost": 252.280084,
-            "actual_cost": 252.280084,
-            "account_cost": 252.280084
+            "total_tokens": 219405960,
+            "cost": 251.351734,
+            "actual_cost": 251.351734,
+            "account_cost": 251.351734
         },
         {
             "model": "gpt-5.6-luna",
-            "requests": 1104,
-            "input_tokens": 14712803,
-            "output_tokens": 755825,
+            "requests": 1033,
+            "input_tokens": 13327654,
+            "output_tokens": 563765,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 165398656,
-            "total_tokens": 180867284,
-            "cost": 9.17482732,
-            "actual_cost": 9.17482732,
-            "account_cost": 9.17482732
+            "cache_read_tokens": 160262272,
+            "total_tokens": 174153691,
+            "cost": 8.56459784,
+            "actual_cost": 8.56459784,
+            "account_cost": 8.56459784
         },
         {
             "model": "gpt-6-astra",

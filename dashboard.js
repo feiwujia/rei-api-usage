@@ -224,10 +224,24 @@ function buildTrends(data, raw) {
     .sort((a, b) => Date.parse(a.fetched_at) - Date.parse(b.fetched_at));
   if (data.updated && shanghaiDay(data.updated)) snapshots.push({ fetched_at: data.updated, data: raw });
   const daily = new Map();
+  const coveredDays = new Set();
   const modelDays = new Map();
   const names = new Set();
   for (const snapshot of snapshots) {
-    for (const row of snapshot.data.daily_usage || []) daily.set(row.date, row);
+    const usage = snapshot.data.daily_usage;
+    if (Array.isArray(usage) && usage.length) {
+      const first = usage.map(row => row.date).sort()[0];
+      const last = shanghaiDay(snapshot.fetched_at);
+      for (let date = Date.parse(first + "T00:00:00Z"); date <= Date.parse(last + "T00:00:00Z"); date += 86400000) {
+        coveredDays.add(new Date(date).toISOString().slice(0, 10));
+      }
+      for (const row of usage) daily.set(row.date, row);
+    }
+    if (snapshot.data.usage?.today) {
+      const day = shanghaiDay(snapshot.fetched_at);
+      daily.set(day, { ...snapshot.data.usage.today, date: day });
+      coveredDays.add(day);
+    }
     const models = snapshot.data.model_stats;
     if (!Array.isArray(models)) continue;
     const values = new Map(models.map(model => [model.model, Number(model.actual_cost ?? model.cost ?? 0)]));
@@ -237,16 +251,13 @@ function buildTrends(data, raw) {
   }
   for (const row of data.daily) daily.set(row.date, row);
   const dates = [...new Set([...daily.keys(), ...modelDays.keys()])].sort();
-  return { daily, modelDays, names: [...names].sort(), dates, today: data.summary,
+  return { daily, coveredDays, modelDays, names: [...names].sort(), dates, today: data.summary, snapshots,
+    updated: data.updated || snapshots.at(-1)?.fetched_at,
     end: shanghaiDay(data.updated) || dates.at(-1) };
 }
 
 function trendSeries(trends, range, mode, selectedModel = "") {
-  if (range === "today" || range === "24h") return { labels: [range === "today" ? "Today" : "Last 24h"], datasets: [{
-    label: "Input", data: [trends.today.input_tokens], backgroundColor: "#2563eb"
-  }, { label: "Output", data: [trends.today.output_tokens], backgroundColor: "#10b981" }, {
-    label: "Cache read", data: [trends.today.cache_read_tokens], backgroundColor: "#f59e0b"
-  }] };
+  if (range === "today" || range === "24h") return intradaySeries(trends, range, mode);
   if (!trends.end || !trends.dates.length) return { labels: [], datasets: [] };
   const end = Date.parse(trends.end + "T00:00:00Z");
   const start = range === "all" ? Date.parse(trends.dates[0] + "T00:00:00Z")
@@ -257,14 +268,54 @@ function trendSeries(trends, range, mode, selectedModel = "") {
   const datasets = mode === "total" ? [{ label: "Daily cost", borderColor: colors[0],
     data: labels.map(day => {
       const row = trends.daily.get(day);
-      return row ? Number(row.actual_cost ?? row.cost ?? 0) : null;
+      return row ? Number(row.actual_cost ?? row.cost ?? 0) : trends.coveredDays?.has(day) ? 0 : null;
     }) }] : trends.names.filter(name => !selectedModel || name === selectedModel).map(name => ({
       label: name,
       borderColor: colors[trends.names.indexOf(name) % colors.length],
-      data: labels.map(day => trends.modelDays.get(day)?.get(name) ?? null)
+      data: labels.map(day => trends.modelDays.has(day) ? trends.modelDays.get(day).get(name) ?? 0 : null)
     }));
-  return { labels, datasets: datasets.map(dataset => ({ ...dataset, tension: 0,
-    pointRadius: 2, borderWidth: 2, fill: false, spanGaps: false })) };
+  return styleSeries({ labels, datasets }, true);
+}
+
+const seriesColors = ["#3b82f6", "#14b8a6", "#e6a23c", "#a78bfa", "#ec7098", "#64748b", "#06b6d4", "#84a34a"];
+
+function styleSeries(series, fill = true) {
+  series.datasets = series.datasets.map((dataset, index) => {
+    const color = seriesColors[index % seriesColors.length];
+    return { ...dataset, borderColor: color, backgroundColor: color + "18",
+      pointBackgroundColor: color, pointBorderColor: "#fff", pointBorderWidth: 1.5,
+      pointRadius: series.labels.length === 1 ? 5 : 2, pointHoverRadius: 5,
+      borderWidth: 2.5, tension: 0.25, cubicInterpolationMode: "monotone", fill, spanGaps: false };
+  });
+  return series;
+}
+
+function intradaySeries(trends, range, mode) {
+  const end = Date.parse(trends.updated);
+  const start = range === "today" ? Date.parse(shanghaiDay(trends.updated) + "T00:00:00+08:00") : end - 86400000;
+  const rows = [...new Map((trends.snapshots || []).map(row => [Date.parse(row.fetched_at), row])).values()]
+    .filter(row => Date.parse(row.fetched_at) >= start && Date.parse(row.fetched_at) <= end)
+    .sort((a, b) => Date.parse(a.fetched_at) - Date.parse(b.fetched_at));
+  const labels = rows.map(row => formatUpdated(row.fetched_at).slice(5, 16));
+  if (mode === "models") return styleSeries({ labels, datasets: trends.names.map(name => ({
+    label: name, data: rows.map(row => {
+      const model = row.data.model_stats?.find(model => model.model === name);
+      return model ? Number(model.actual_cost ?? model.cost ?? 0) : Array.isArray(row.data.model_stats) ? 0 : null;
+    }) })) });
+  const keys = ["input_tokens", "output_tokens", "cache_read_tokens", "cache_creation_tokens"];
+  const names = ["Input", "Output", "Cache read", "Cache write"];
+  return styleSeries({ labels, datasets: keys.map((key, index) => {
+    const values = rows.map(row => {
+      const usage = range === "today" ? row.data.usage?.today : row.data.usage?.total;
+      return Number.isFinite(usage?.[key]) ? usage[key] : null;
+    });
+    // Never interpolate a window boundary or a reset of the lifetime counter.
+    const baseline = values[0];
+    return { label: names[index], data: range === "today" ? values : values.map((value, i) =>
+      baseline !== null && value !== null && value >= baseline &&
+      !values.slice(0, i + 1).some((v, j) => j && v !== null && values[j - 1] !== null && v < values[j - 1])
+        ? value - baseline : null) };
+  }) }, true);
 }
 
 function renderSummary(data) {
@@ -285,8 +336,10 @@ function renderSummary(data) {
   const status =
     document.querySelector("#status");
 
-  status.textContent =
-    `${data.status || "unknown"} · ${data.mode || "unknown"}`;
+  document.querySelector("#subscriptionType").textContent =
+    data.mode === "quota_limited" ? "Quota subscription" : (data.mode || "Unknown").replaceAll("_", " ");
+  status.textContent = data.status === "active" ? "Active" : (data.status || "Unknown");
+  status.className = data.status === "active" ? "status is-active" : "status";
 
 
   document.querySelector("#updated").textContent =
@@ -329,12 +382,8 @@ function renderQuota(data) {
     `${quota.window || ""} quota`;
 
 
-  const reset =
-    new Date(quota.reset_at);
-
-
   document.querySelector("#quotaReset").textContent =
-    `Resets ${reset.toLocaleString()}`;
+    `Resets ${formatUpdated(quota.reset_at)}`;
 }
 
 
@@ -343,7 +392,14 @@ function renderDailyChart(data) {
   const selectedModels = new Set(data.trends.names);
   for (const name of data.trends.names) {
     const label = document.createElement("label");
-    label.innerHTML = `<input type="checkbox" value="${name}" checked><span>${name}</span>`;
+    label.style.setProperty("--model-color", seriesColors[data.trends.names.indexOf(name) % seriesColors.length]);
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = name;
+    input.checked = true;
+    const caption = document.createElement("span");
+    caption.textContent = name;
+    label.append(input, caption);
     label.querySelector("input").addEventListener("change", event => {
       event.target.checked ? selectedModels.add(name) : selectedModels.delete(name);
       update();
@@ -356,30 +412,39 @@ function renderDailyChart(data) {
     options: {
       responsive: true, maintainAspectRatio: false,
       interaction: { intersect: false, mode: "index" },
-      scales: { y: { beginAtZero: true, title: { display: true, text: "Tokens" } } },
+      scales: {
+        x: { grid: { display: false }, border: { display: false }, ticks: { maxTicksLimit: 8, maxRotation: 0, color: "#87909e", font: { size: 11 } } },
+        y: { beginAtZero: true, border: { display: false }, grid: { color: "#edf0f4" }, ticks: { maxTicksLimit: 5, callback: value => compact.format(value) }, title: { display: true, text: "Tokens" } }
+      },
       plugins: {
         legend: { display: false, position: "bottom", labels: { usePointStyle: true, pointStyle: "circle", padding: 18 } },
-        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${formatMoney(ctx.raw)}` } }
+        tooltip: { backgroundColor: "#fff", titleColor: "#111827", bodyColor: "#475569", borderColor: "#e5e7eb", borderWidth: 1, padding: 12,
+          callbacks: { label: ctx => `${ctx.dataset.label}: ${formatMoney(ctx.raw)}` } }
       }
     }
   });
   function update() {
     const range = document.querySelector('input[name="range"]:checked').value;
     const mode = document.querySelector('input[name="mode"]:checked').value;
-    modelChecks.hidden = mode !== "models" || range === "today" || range === "24h";
+    const tokens = mode === "total" && (range === "today" || range === "24h");
+    modelChecks.hidden = mode !== "models";
     chart.data = trendSeries(data.trends, range, mode, "");
-    chart.config.type = range === "today" || range === "24h" ? "bar" : "line";
+    chart.config.type = "line";
     if (mode === "models") chart.data.datasets = chart.data.datasets.filter(dataset => selectedModels.has(dataset.label));
-    chart.options.plugins.legend.display = mode === "models";
-    chart.options.scales.y.title.text = range === "today" || range === "24h" ? "Tokens" : "USD";
-    document.querySelector("#trendMetric").textContent = range === "today"
-      ? "Token composition today" : range === "24h" ? "Latest 24h view"
-      : mode === "models" ? "Reported model cost · window totals, last snapshot per day" : "Daily API cost";
-    document.querySelector("#trendTitle").textContent = range === "today" || range === "24h" ? "Token usage" : "Cost over time";
+    chart.options.plugins.legend.display = tokens;
+    chart.options.scales.y.title.text = tokens ? "Tokens" : "USD";
+    chart.options.plugins.tooltip.callbacks.label = ctx => `${ctx.dataset.label}: ${tokens ? number.format(ctx.raw) : formatMoney(ctx.raw)}`;
+    document.querySelector("#trendMetric").textContent = mode === "models"
+      ? "Reported model cost · rolling window totals · UTC+8"
+      : range === "today" ? "Cumulative tokens today · UTC+8"
+      : range === "24h" ? "Cumulative tokens since first observation in the 24h window · UTC+8" : "Daily API cost · UTC+8";
+    document.querySelector("#trendTitle").textContent = tokens ? "Token usage" : "Cost over time";
     const notice = document.querySelector("#trendNotice");
     const hasData = chart.data.datasets.some(dataset => dataset.data.some(value => value !== null));
     notice.textContent = data.historyUnavailable ? "History unavailable; showing latest data only."
-      : !hasData ? "No observations in this period." : "";
+      : !hasData ? "No observations in this period."
+      : tokens && chart.data.datasets.every(dataset => dataset.data.every(value => value === null || value === 0))
+        ? "No token increase recorded between these observations." : "";
     notice.hidden = !notice.textContent;
     chart.update();
   }

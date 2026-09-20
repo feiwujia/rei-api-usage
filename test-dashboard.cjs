@@ -18,7 +18,7 @@ const context = vm.createContext({
       value: selector.includes('range') ? '30' : selector.includes('mode') ? 'total' : ''
     });
     return elements.get(selector);
-  }, createElement() { return { innerHTML: '', querySelector() { return { addEventListener() {} }; } }; } },
+  }, createElement() { return { style: { setProperty() {} }, append() {}, innerHTML: '', querySelector() { return { addEventListener() {} }; } }; } },
   Chart: function (element, config) { charts.push(config); this.config = { type: 'line' }; Object.assign(this, config); this.update = () => {}; }
 });
 const source = fs.readFileSync(path.join(__dirname, 'dashboard.js'), 'utf8');
@@ -27,6 +27,16 @@ const source = fs.readFileSync(path.join(__dirname, 'dashboard.js'), 'utf8');
   assert.ok(elements.get('#modelTable').innerHTML.includes('gpt-6-astra'));
   assert.ok(elements.get('#updated').textContent.includes(context.formatUpdated(report.match(/^Updated: `([^`]+)`/m)[1])));
   assert.equal(context.formatUpdated('2026-09-12T17:20:45Z'), '2026-09-13 01:20:45 (UTC+8)');
+  assert.ok(elements.get('#quotaReset').textContent.endsWith('(UTC+8)'));
+  const snapshots = [
+    { fetched_at: '2026-09-12T18:00:00+08:00', data: { usage: { total: { input_tokens: 100 }, today: { input_tokens: 20 } } } },
+    { fetched_at: '2026-09-13T01:00:00+08:00', data: { usage: { total: { input_tokens: 140 }, today: { input_tokens: 10 } } } }
+  ];
+  const intraday = { snapshots, updated: snapshots[1].fetched_at, names: [] };
+  assert.deepEqual(Array.from(context.trendSeries(intraday, '24h', 'total').datasets[0].data), [0, 40]);
+  assert.deepEqual(Array.from(context.trendSeries(intraday, 'today', 'total').datasets[0].data), [10]);
+  snapshots[1].data.usage.total.input_tokens = 50;
+  assert.deepEqual(Array.from(context.trendSeries(intraday, '24h', 'total').datasets[0].data), [0, null]);
   const sample = { updated: '2026-09-13T01:00:00+08:00', daily: [], history: [
     { fetched_at: '2026-09-10T23:00:00+08:00', data: { daily_usage: [{ date: '2026-09-10', cost: 4 }], model_stats: [{ model: 'm', cost: 100 }] } },
     { fetched_at: '2026-09-11T23:00:00+08:00', data: { model_stats: [{ model: 'm', cost: 80 }] } }
@@ -39,6 +49,22 @@ const source = fs.readFileSync(path.join(__dirname, 'dashboard.js'), 'utf8');
   assert.equal(context.trendSeries(trends, '30', 'total').labels.length, 30);
   assert.equal(context.trendSeries(trends, 'all', 'total').labels[0], '2026-09-10');
   assert.equal(context.trendSeries(trends, 'all', 'total').datasets[0].data[0], 4);
+  const totals = context.trendSeries(trends, '7', 'total');
+  assert.deepEqual(Array.from(totals.datasets[0].data), [null, null, null, 4, null, null, null]);
+  const sparse = context.buildTrends(sample, { daily_usage: [{ date: '2026-09-10', cost: 4 }, { date: '2026-09-13', cost: 2 }] });
+  assert.deepEqual(Array.from(context.trendSeries(sparse, '7', 'total').datasets[0].data), [null, null, null, 4, 0, 0, 2]);
+  const missingModel = context.buildTrends({ updated: '2026-09-13T01:00:00+08:00', daily: [], history: [
+    { fetched_at: '2026-09-11T12:00:00+08:00', data: { model_stats: [{ model: 'new', cost: 2 }] } }
+  ] }, { model_stats: [] });
+  assert.deepEqual(Array.from(context.trendSeries(missingModel, 'all', 'models').datasets[0].data), [2, null, 0]);
+  for (const range of ['today', '24h', '7', '30', 'all']) {
+    for (const mode of ['total', 'models']) {
+      for (const dataset of context.trendSeries(trends, range, mode).datasets) {
+        assert.equal(dataset.fill, true);
+        assert.equal(dataset.tension, 0.25);
+      }
+    }
+  }
   const models = Array.from({ length: 10 }, (_, i) => ({ name: `new-model-${i}`, cost: i }));
   context.renderModelChart({ models });
   assert.equal(charts.at(-1).data.labels.length, 10);

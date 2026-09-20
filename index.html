@@ -6,7 +6,7 @@
 
   <title>REI API Usage</title>
 
-  <link rel="stylesheet" href="./dashboard.css?v=20260913-2" />
+  <link rel="stylesheet" href="./dashboard.css?v=20260920" />
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
 </head>
@@ -22,7 +22,7 @@
         <p id="updated" class="muted">Loading usage data…</p>
       </div>
 
-      <div id="status" class="status">Loading</div>
+      <div class="subscription"><span class="subscription-label">Subscription</span><strong id="subscriptionType">Loading</strong><span id="status" class="status">Loading</span></div>
     </header>
 
 
@@ -74,10 +74,10 @@
             <label><input type="radio" name="mode" value="total" checked><span>Total</span></label>
             <label><input type="radio" name="mode" value="models"><span>By model</span></label>
           </fieldset>
-          <div id="trendModels" class="model-checks" hidden aria-label="Models"></div>
         </div>
       </div>
 
+      <div id="trendModels" class="model-checks" hidden aria-label="Models"></div>
       <p id="trendNotice" class="muted" role="status" hidden></p>
 
       <div class="chart-container">
@@ -175,6 +175,6 @@
 
   </main>
 
-  <script src="./dashboard.js?v=20260913-2"></script>
+  <script src="./dashboard.js?v=20260920"></script>
 </body>
 </html>

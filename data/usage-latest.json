@@ -290,14 +290,14 @@
         "average_duration_ms": 13084.510823863637,
         "rpm": 0,
         "today": {
-            "actual_cost": 17.48377952,
+            "actual_cost": 0,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 12034560,
-            "cost": 17.48377952,
-            "input_tokens": 409836,
-            "output_tokens": 31297,
-            "requests": 112,
-            "total_tokens": 12475693
+            "cache_read_tokens": 0,
+            "cost": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "requests": 0,
+            "total_tokens": 0
         },
         "total": {
             "actual_cost": 8237.70358419,

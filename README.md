@@ -1,14 +1,14 @@
 # REI API Usage
 
-Updated: `2026-10-03T13:21:40+08:00`
+Updated: `2026-10-03T18:30:54+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
 ## Rate Limits
 
-| limit | remaining | reset_at | used | window | window_start |
-|---|---|---|---|---|---|
-| 300 | 287.85089472 | 2026-10-10T00:00:00+08:00 | 12.14910528 | 7d | 2026-10-03T00:00:00+08:00 |
+| limit | remaining | used | window | window_start |
+|---|---|---|---|---|
+| 300 | 300 | 0 | 7d | - |
 
 ## Overview
 
@@ -66,7 +66,7 @@ Updated: `2026-10-03T13:21:40+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 13,200.49526495 |
+| average_duration_ms | 13,196.62525287 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -87,11 +87,11 @@ Updated: `2026-10-03T13:21:40+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 7,841.59562009 |
+| actual_cost | 7,827.80302509 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 9,168,417,664 |
-| cost | 7,841.59562009 |
-| input_tokens | 521,698,096 |
-| output_tokens | 32,261,303 |
-| requests | 71,277 |
-| total_tokens | 9,722,377,063 |
+| cache_read_tokens | 9,161,584,000 |
+| cost | 7,827.80302509 |
+| input_tokens | 519,763,630 |
+| output_tokens | 32,194,730 |
+| requests | 71,184 |
+| total_tokens | 9,713,542,360 |

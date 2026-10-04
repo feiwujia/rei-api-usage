@@ -402,11 +402,10 @@
     "rate_limits": [
         {
             "limit": 300,
-            "remaining": 277.31782868,
-            "reset_at": "2026-10-10T00:00:00+08:00",
-            "used": 22.68217132,
+            "remaining": 300,
+            "used": 0,
             "window": "7d",
-            "window_start": "2026-10-03T00:00:00+08:00"
+            "window_start": null
         }
     ],
     "status": "active",

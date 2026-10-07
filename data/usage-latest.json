@@ -422,7 +422,7 @@
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 14611.232189914186,
+        "average_duration_ms": 14611.793614145738,
         "rpm": 0,
         "today": {
             "actual_cost": 0,
@@ -435,14 +435,14 @@
             "total_tokens": 0
         },
         "total": {
-            "actual_cost": 7665.92021393,
+            "actual_cost": 7665.67627168,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 11221232768,
-            "cost": 7665.92021393,
-            "input_tokens": 593870781,
-            "output_tokens": 43599994,
-            "requests": 88798,
-            "total_tokens": 11858703543
+            "cache_read_tokens": 11220998144,
+            "cost": 7665.67627168,
+            "input_tokens": 593805879,
+            "output_tokens": 43597079,
+            "requests": 88790,
+            "total_tokens": 11858401102
         },
         "tpm": 0
     }

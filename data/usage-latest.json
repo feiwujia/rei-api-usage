@@ -360,15 +360,15 @@
         },
         {
             "model": "gpt-6-astra",
-            "requests": 3520,
-            "input_tokens": 22657522,
-            "output_tokens": 1725140,
+            "requests": 3498,
+            "input_tokens": 22578663,
+            "output_tokens": 1699570,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 436903296,
-            "total_tokens": 461285958,
-            "cost": 1312.956157,
-            "actual_cost": 1312.956157,
-            "account_cost": 807.805885
+            "cache_read_tokens": 433751168,
+            "total_tokens": 458029401,
+            "cost": 1304.584811,
+            "actual_cost": 1304.584811,
+            "account_cost": 802.586667
         },
         {
             "model": "gpt-6-luna",
@@ -384,15 +384,15 @@
         },
         {
             "model": "codex-auto-review",
-            "requests": 2265,
-            "input_tokens": 7292332,
-            "output_tokens": 169165,
+            "requests": 2235,
+            "input_tokens": 7209355,
+            "output_tokens": 166978,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 125335936,
-            "total_tokens": 132797433,
-            "cost": 4.18224052,
-            "actual_cost": 4.18224052,
-            "account_cost": 4.18224052
+            "cache_read_tokens": 124219264,
+            "total_tokens": 131595597,
+            "cost": 4.14068728,
+            "actual_cost": 4.14068728,
+            "account_cost": 4.14068728
         },
         {
             "model": "gpt-5.6-sol",
@@ -455,7 +455,7 @@
     ],
     "status": "active",
     "usage": {
-        "average_duration_ms": 14823.353810775296,
+        "average_duration_ms": 14821.31700268449,
         "rpm": 0,
         "today": {
             "actual_cost": 1.33781824,
@@ -468,14 +468,14 @@
             "total_tokens": 1143527
         },
         "total": {
-            "actual_cost": 5695.69216277,
+            "actual_cost": 5675.63482957,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 9130992896,
-            "cost": 5695.69216277,
-            "input_tokens": 497688578,
-            "output_tokens": 36651570,
-            "requests": 73056,
-            "total_tokens": 9665333044
+            "cache_read_tokens": 9130663424,
+            "cost": 5675.63482957,
+            "input_tokens": 493863654,
+            "output_tokens": 36621508,
+            "requests": 73012,
+            "total_tokens": 9661148586
         },
         "tpm": 0
     }

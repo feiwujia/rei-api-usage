@@ -1,14 +1,14 @@
 # REI API Usage
 
-Updated: `2026-10-22T22:40:03+08:00`
+Updated: `2026-10-23T02:49:09+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
 ## Rate Limits
 
-| limit | remaining | reset_at | used | window | window_start |
-|---|---|---|---|---|---|
-| 300 | 280.31297388 | 2026-10-27T00:00:00+08:00 | 19.68702612 | 7d | 2026-10-20T00:00:00+08:00 |
+| limit | remaining | used | window | window_start |
+|---|---|---|---|---|
+| 300 | 300 | 0 | 7d | - |
 
 ## Overview
 
@@ -51,7 +51,6 @@ Updated: `2026-10-22T22:40:03+08:00`
 | 2026-09-26 | 1,820 | 10,533,526 | 815,372 | 205,950,336 | 0 | 217,299,234 | 221.04905168 | 221.04905168 |
 | 2026-09-25 | 48 | 243,812 | 25,196 | 1,840,000 | 0 | 2,109,008 | 2.3959867 | 2.3959867 |
 | 2026-09-24 | 112 | 409,836 | 31,297 | 12,034,560 | 0 | 12,475,693 | 17.48377952 | 17.48377952 |
-| 2026-09-23 | 224 | 985,646 | 82,764 | 12,594,304 | 0 | 13,662,714 | 17.2510242 | 17.2510242 |
 
 ### Model Stats
 
@@ -70,7 +69,7 @@ Updated: `2026-10-22T22:40:03+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 15,935.63173136 |
+| average_duration_ms | 15,954.57790051 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -78,24 +77,24 @@ Updated: `2026-10-22T22:40:03+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 5.0445132 |
+| actual_cost | 0 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 22,217,856 |
-| cost | 5.0445132 |
-| input_tokens | 945,414 |
-| output_tokens | 149,574 |
-| requests | 126 |
-| total_tokens | 23,312,844 |
+| cache_read_tokens | 0 |
+| cost | 0 |
+| input_tokens | 0 |
+| output_tokens | 0 |
+| requests | 0 |
+| total_tokens | 0 |
 
 #### Total
 
 | Field | Value |
 |---|---:|
-| actual_cost | 3,524.20118357 |
+| actual_cost | 3,489.97377637 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 6,691,420,416 |
-| cost | 3,524.20118357 |
-| input_tokens | 366,716,891 |
-| output_tokens | 28,621,525 |
-| requests | 53,871 |
-| total_tokens | 7,086,758,832 |
+| cache_read_tokens | 6,652,774,656 |
+| cost | 3,489.97377637 |
+| input_tokens | 364,324,850 |
+| output_tokens | 28,500,547 |
+| requests | 53,594 |
+| total_tokens | 7,045,600,053 |

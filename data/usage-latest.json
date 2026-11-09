@@ -1,17 +1,6 @@
 {
     "daily_usage": [
         {
-            "date": "2026-10-11",
-            "requests": 27,
-            "input_tokens": 139674,
-            "output_tokens": 12052,
-            "cache_read_tokens": 1267840,
-            "cache_write_tokens": 0,
-            "total_tokens": 1419566,
-            "cost": 1.61618504,
-            "actual_cost": 1.61618504
-        },
-        {
             "date": "2026-10-12",
             "requests": 181,
             "input_tokens": 929030,
@@ -446,14 +435,14 @@
         "average_duration_ms": 16816.960587931728,
         "rpm": 0,
         "today": {
-            "actual_cost": 11.14559072,
+            "actual_cost": 0,
             "cache_creation_tokens": 0,
-            "cache_read_tokens": 84628352,
-            "cost": 11.14559072,
-            "input_tokens": 2753563,
-            "output_tokens": 277343,
-            "requests": 578,
-            "total_tokens": 87659258
+            "cache_read_tokens": 0,
+            "cost": 0,
+            "input_tokens": 0,
+            "output_tokens": 0,
+            "requests": 0,
+            "total_tokens": 0
         },
         "total": {
             "actual_cost": 2801.97637375,

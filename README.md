@@ -1,14 +1,14 @@
 # REI API Usage
 
-Updated: `2026-11-13T18:55:36+08:00`
+Updated: `2026-11-14T02:20:50+08:00`
 
 [Latest JSON](./data/usage-latest.json) | [Usage history](./data/usage-history.jsonl)
 
 ## Rate Limits
 
-| limit | remaining | reset_at | used | window | window_start |
-|---|---|---|---|---|---|
-| 150 | 87.81832662 | 2026-11-14T00:00:00+08:00 | 62.18167338 | 7d | 2026-11-07T00:00:00+08:00 |
+| limit | remaining | used | window | window_start |
+|---|---|---|---|---|
+| 150 | 150 | 0 | 7d | 2026-11-07T00:00:00+08:00 |
 
 ## Overview
 
@@ -51,7 +51,6 @@ Updated: `2026-11-13T18:55:36+08:00`
 | 2026-10-18 | 103 | 510,024 | 55,203 | 6,558,208 | 0 | 7,123,435 | 2.83396048 | 2.83396048 |
 | 2026-10-17 | 36 | 149,814 | 16,636 | 1,704,832 | 0 | 1,871,282 | 2.0245484 | 2.0245484 |
 | 2026-10-16 | 26 | 114,458 | 11,085 | 1,017,984 | 0 | 1,143,527 | 1.33781824 | 1.33781824 |
-| 2026-10-15 | 31 | 487,208 | 26,172 | 3,683,072 | 0 | 4,196,452 | 2.13192584 | 2.13192584 |
 
 ### Model Stats
 
@@ -71,7 +70,7 @@ Updated: `2026-11-13T18:55:36+08:00`
 
 | Field | Value |
 |---|---:|
-| average_duration_ms | 17,264.6199918 |
+| average_duration_ms | 17,305.25322435 |
 | rpm | 0 |
 | tpm | 0 |
 
@@ -79,24 +78,24 @@ Updated: `2026-11-13T18:55:36+08:00`
 
 | Field | Value |
 |---|---:|
-| actual_cost | 2.9995272 |
+| actual_cost | 0 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 4,648,576 |
-| cost | 2.9995272 |
-| input_tokens | 366,358 |
-| output_tokens | 52,495 |
-| requests | 77 |
-| total_tokens | 5,067,429 |
+| cache_read_tokens | 0 |
+| cost | 0 |
+| input_tokens | 0 |
+| output_tokens | 0 |
+| requests | 0 |
+| total_tokens | 0 |
 
 #### Total
 
 | Field | Value |
 |---|---:|
-| actual_cost | 2,674.17995309 |
+| actual_cost | 2,673.41749397 |
 | cache_creation_tokens | 0 |
-| cache_read_tokens | 6,212,159,616 |
-| cost | 2,674.17995309 |
-| input_tokens | 317,626,601 |
-| output_tokens | 29,617,328 |
-| requests | 51,191 |
-| total_tokens | 6,559,403,545 |
+| cache_read_tokens | 6,189,156,480 |
+| cost | 2,673.41749397 |
+| input_tokens | 316,316,747 |
+| output_tokens | 29,583,640 |
+| requests | 51,018 |
+| total_tokens | 6,535,056,867 |
